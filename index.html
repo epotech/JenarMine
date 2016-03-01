@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DCS PaaS</title>
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="js/windowControll.js"></script>
+</head>
+
+<body onload="ChangeTab('tab1')">
+    <p class="tabs">
+        <a id="tab1_lnk" href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">Redmine</a>
+        <a id="tab2_lnk" href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">Sonar</a>
+    </p>
+    <div id="tab1" class="tab" style="display: none">
+        <iframe id="tab1_frame" name="redmine" src="http://XXX.XX.XX.XX/redmine/login" width="100%" height="98%" style="overflow:auto"></iframe>
+    </div>
+    <div id="tab2" class="tab" style="display: none">
+        <iframe id="tab2_frame" name="sonar" src="http://XXX.XX.XX.XX/sonar" width="100%" height="98%"></iframe>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+</body>
+
+</html>

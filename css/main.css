@@ -1,0 +1,56 @@
+html,
+body {
+    height: 98%;
+    background-color: #f7f7f7;
+}
+
+div.tabbox {
+    margin: 0px;
+    padding: 0px;
+    width: 400px;
+}
+
+p.tabs {
+    font-family: "Meiryo";
+    margin: 0px;
+    padding: 0px;
+}
+
+p.tabs a {
+    display: block;
+    width: 5em;
+    float: left;
+    margin: 0px 1px 0px 0px;
+    padding: 3px;
+    text-align: center;
+    border-radius: 12px 12px 0px 0px;
+}
+
+p.tabs a.tab1 {
+    background-color: #cc1237;
+    color: white;
+}
+
+p.tabs a.tab2 {
+    background-color: #4b9fd5;
+    color: white;
+}
+
+div.tab {
+    height: 150px;
+    clear: left;
+}
+
+div#tab1 {
+    height: 98%;
+    overflow: hidden;
+}
+
+div#tab2 {
+    height: 98%;
+    overflow: hidden;
+}
+
+div.tab p {
+    margin: 0.5em;
+}
