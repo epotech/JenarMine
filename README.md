@@ -4,11 +4,11 @@ Redmine/Jenkins/Sonarの主要な機能をひとつのページに集約した�
 
 ## Description
 
-Redmine/Jenkins/Sonarなどいろんな場所に散らばっていてお困りではございませんか？
-JenarMineを使えば、そんな悩みを一気に解決します！
-・
-・
-・
+Redmine/Jenkins/Sonarなどいろんな場所に散らばっていてお困りではございませんか？  
+JenarMineを使えば、そんな悩みを一気に解決します！  
+・  
+・  
+・  
 
 ## Requirement
 
@@ -29,4 +29,4 @@ http://opensource.org/licenses/mit-license.php
 
 ## Author
 
-Copyright (c) 2016 Takuya Matsuoka
+Copyright (c) 2016 epotech
