@@ -4,7 +4,11 @@ Redmine/Jenkins/Sonarの主要な機能をひとつのページに集約した�
 
 ## Description
 
-詳細を書く
+Redmine/Jenkins/Sonarなどいろんな場所に散らばっていてお困りではございませんか？
+JenarMineを使えば、そんな悩みを一気に解決します！
+・
+・
+・
 
 ## Requirement
 
