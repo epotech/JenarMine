@@ -3,21 +3,62 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>DCS PaaS</title>
+    <title>JenarMine</title>
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="js/windowControll.js"></script>
+    <script type="text/javascript" src="js/setting.js"></script>
 </head>
 
 <body onload="ChangeTab('tab1')">
-    <p class="tabs">
+    <p class="tabs" style="width: 100%;">
         <a id="tab1_lnk" href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">Redmine</a>
-        <a id="tab2_lnk" href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">Sonar</a>
+        <a id="tab2_lnk" href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">Jenkins</a>
+        <a id="tab3_lnk" href="#tab3" class="tab3" onclick="ChangeTab('tab3'); return false;">Sonar</a>
+        <a id="tab4_lnk" href="#tab4" class="tab4" onclick="ChangeTab('tab4'); return false;"><img src="./images/setting.svg" height="25%" width="25%" ></a>
     </p>
     <div id="tab1" class="tab" style="display: none">
         <iframe id="tab1_frame" name="redmine" src="http://XXX.XX.XX.XX/redmine/login" width="100%" height="98%" style="overflow:auto"></iframe>
     </div>
     <div id="tab2" class="tab" style="display: none">
-        <iframe id="tab2_frame" name="sonar" src="http://XXX.XX.XX.XX/sonar" width="100%" height="98%"></iframe>
+        <iframe id="tab2_frame" name="jenkins" src="http://XXX.XX.XX.XX/jenkins" width="100%" height="98%"></iframe>
+    </div>
+    <div id="tab3" class="tab" style="display: none">
+        <iframe id="tab3_frame" name="sonar" src="http://XXX.XX.XX.XX/sonar" width="100%" height="98%"></iframe>
+    </div>
+    <div id="tab4" class="tab" style="display: none">
+        <div style="margin-top: 10px; position: absolute;">
+            <ul>
+                <li>
+                    <label for="hostName">接続先ホスト名</label><input id="hostName" type="text" placeholder="IPもしくはホスト名" />
+                </li>
+                <li>
+                    <label for="useService">利用サービス</label>
+                    <div id="useService" style="display:inline-block;">
+                        <input type="checkbox" name="useService" value="Redmine">Redmine
+                        <input type="checkbox" name="useService" value="Redmine">Jenkins
+                        <input type="checkbox" name="useService" value="Redmine">Sonar
+                    </div>
+                </li>
+                <li>
+                    <label for="userId_jenkins">ユーザID(Jenkins)</label><input id="userId_jenkins" type="text" placeholder="ユーザID" />
+                </li>
+                <li>
+                    <label for="password_jenkins">パスワード(Jenkins)</label><input id="password_jnekins" type="text" placeholder="パスワード" />
+                </li>
+                <li>
+                    <label for="userId_sonar">ユーザID(Sonar)</label><input id="userId_sonar" type="text" placeholder="ユーザID" />
+                </li>
+                <li>
+                    <label for="password_sonar">パスワード(Sonar)</label><input id="password_sonar" type="text" placeholder="パスワード" />
+                </li>
+                <li>
+                    <label for="userId_redmine">ユーザID(Redmine)</label><input id="userId_redmine" type="text" placeholder="ユーザID" />
+                </li>
+                <li>
+                    <label for="password_redmine">パスワード(Redmine)</label><input id="password_redmine" type="text" placeholder="パスワード" />
+                </li>
+            </ul>
+        </div>
     </div>
 
     <link rel="stylesheet" type="text/css" href="css/main.css"></link>
