@@ -2,10 +2,12 @@ var currentTabName;
 
 //キーダウンイベントを制御し、iframe内の操作をブラウザのように行う
 document.onkeydown = function (e) {
-    if (e.keyCode == 116) {
-        document.getElementById(currentTabName + '_frame').contentWindow.location.reload(true);
-    } else if (e.keyCode == 8) {
-        document.getElementById(currentTabName + '_frame').contentWindow.history.back();
+    if (document.getElementById(currentTabName + '_frame')) {
+        if (e.keyCode == 116) {
+            document.getElementById(currentTabName + '_frame').contentWindow.location.reload(true);
+        } else if (e.keyCode == 8) {
+            document.getElementById(currentTabName + '_frame').contentWindow.history.back();
+        }
     }
 };
 

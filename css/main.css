@@ -4,10 +4,28 @@ body {
     background-color: #f7f7f7;
 }
 
+div {
+    font-size: 1em;
+}
+
 div.tabbox {
     margin: 0px;
     padding: 0px;
     width: 400px;
+}
+
+label {
+    margin-right: 10px;
+    width:200px;
+    float: left;
+}
+
+ul {
+    padding-left: 10px;
+}
+
+ul li {
+    list-style: none;
 }
 
 p.tabs {
@@ -32,8 +50,18 @@ p.tabs a.tab1 {
 }
 
 p.tabs a.tab2 {
+    background-color: #000000;
+    color: white;
+}
+
+p.tabs a.tab3 {
     background-color: #4b9fd5;
     color: white;
+}
+
+p.tabs a.tab4 {
+    float: right;
+    text-align: right;
 }
 
 div.tab {
@@ -53,4 +81,12 @@ div#tab2 {
 
 div.tab p {
     margin: 0.5em;
+}
+
+input:focus {
+	background: #d6e6fa;
+}
+
+textarea:focus {
+	background: #d6e6fa;
 }
