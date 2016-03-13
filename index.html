@@ -29,33 +29,40 @@
         <div style="margin-top: 10px; position: absolute;">
             <ul>
                 <li>
-                    <label for="hostName">接続先ホスト名</label><input id="hostName" type="text" placeholder="IPもしくはホスト名" />
+                    <label for="hostName">接続先ホスト名</label>
+                    <input id="hostName" class="settingProp" type="text" placeholder="IPもしくはホスト名"/>
                 </li>
                 <li>
                     <label for="useService">利用サービス</label>
                     <div id="useService" style="display:inline-block;">
-                        <input type="checkbox" name="useService" value="Redmine">Redmine
-                        <input type="checkbox" name="useService" value="Redmine">Jenkins
-                        <input type="checkbox" name="useService" value="Redmine">Sonar
+                        <input id='useService_redmine' type="checkbox" class="settingProp" name="useService" value="Redmine">Redmine
+                        <input id='useService_jenkins' type="checkbox" class="settingProp" name="useService" value="Jenkins">Jenkins
+                        <input id='useService_sonar' type="checkbox" class="settingProp" name="useService" value="Sonar">Sonar
                     </div>
                 </li>
                 <li>
-                    <label for="userId_jenkins">ユーザID(Jenkins)</label><input id="userId_jenkins" type="text" placeholder="ユーザID" />
+                    <label for="userId_jenkins">ユーザID(Jenkins)</label>
+                    <input id="userId_jenkins" class="settingProp" type="text" placeholder="ユーザID" />
                 </li>
                 <li>
-                    <label for="password_jenkins">パスワード(Jenkins)</label><input id="password_jnekins" type="text" placeholder="パスワード" />
+                    <label for="password_jenkins">パスワード(Jenkins)</label>
+                    <input id="password_jnekins" class="settingProp" type="text" placeholder="パスワード" />
                 </li>
                 <li>
-                    <label for="userId_sonar">ユーザID(Sonar)</label><input id="userId_sonar" type="text" placeholder="ユーザID" />
+                    <label for="userId_sonar">ユーザID(Sonar)</label>
+                    <input id="userId_sonar" class="settingProp" type="text" placeholder="ユーザID" />
                 </li>
                 <li>
-                    <label for="password_sonar">パスワード(Sonar)</label><input id="password_sonar" type="text" placeholder="パスワード" />
+                    <label for="password_sonar">パスワード(Sonar)</label>
+                    <input id="password_sonar" class="settingProp" type="text" placeholder="パスワード" />
                 </li>
                 <li>
-                    <label for="userId_redmine">ユーザID(Redmine)</label><input id="userId_redmine" type="text" placeholder="ユーザID" />
+                    <label for="userId_redmine">ユーザID(Redmine)</label>
+                    <input id="userId_redmine" class="settingProp" type="text" placeholder="ユーザID" />
                 </li>
                 <li>
-                    <label for="password_redmine">パスワード(Redmine)</label><input id="password_redmine" type="text" placeholder="パスワード" />
+                    <label for="password_redmine">パスワード(Redmine)</label>
+                    <input id="password_redmine" class="settingProp" type="text" placeholder="パスワード" />
                 </li>
             </ul>
         </div>
