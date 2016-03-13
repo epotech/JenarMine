@@ -1,5 +1,5 @@
 $(function () {
-    // 初期表示にlocalstorageから利用するサービス情報をロードする
+    // 初期表示にlocalstorageから利用するサービス情報をロード
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
             if(localStorage.getItem($(this).prop('id')) == 'true') {
@@ -15,7 +15,7 @@ $(function () {
         //alert($(this).val());
     });
     
-    //設定プロパティはすべてonblur時にlocalStorageに格納する
+    //設定プロパティはすべてonblur時にlocalStorageに格納
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
             $(this).click(function () {
