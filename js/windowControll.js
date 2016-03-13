@@ -18,6 +18,9 @@ function ChangeTab(tabname) {
         $('#tab1_lnk').css('opacity', '0.6');
         $('#tab2').css('display', 'none');
         $('#tab2_lnk').css('opacity', '0.6');
+        $('#tab3').css('display', 'none');
+        $('#tab3_lnk').css('opacity', '0.6');
+        $('#tab4').css('display', 'none');
         $('#' + tabname).css('display', 'block');
         $('#' + tabname + '_lnk').css('opacity', '1.0');
         currentTabName = tabname;

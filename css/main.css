@@ -79,6 +79,11 @@ div#tab2 {
     overflow: hidden;
 }
 
+div#tab3 {
+    height: 98%;
+    overflow: hidden;
+}
+
 div.tab p {
     margin: 0.5em;
 }
