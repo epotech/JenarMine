@@ -4,18 +4,20 @@
 //設定とか最小化とか？
 var jenkinsCtr = (function() {
   var siteUrl = "http://192.168.33.10:8080",
-      jobList,
-  init = function() {
-    jobList = new jenkinsJobList();
-    jobList.updateAll();
-    //イベント設定どこでやる？
-  },
-  getTableHtml = function() {
-    return jobList.getTableHtml();
-  }
+    jobList,
+    init = function() {
+      jobList = new jenkinsJobList();
+      //イベント設定どこでやる？
+    },
+    writeTableHtml = function() {
+      jobList.updateAll()
+        .done(function() {
+          $("#jenkins").append(jobList.getTableHtml());
+        });
+    }
   return {
     siteUrl: siteUrl,
-    getTableHtml: getTableHtml,
+    writeTableHtml: writeTableHtml,
     init: init
   };
 })();

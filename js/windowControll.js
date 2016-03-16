@@ -1,11 +1,6 @@
 $(function() {
   jenkinsCtr.init();
-  $("#jenkins").append(jenkinsCtr.getTableHtml());
-  //イベントのバインドをどこでやる？
-  $("#jenkins .huga").on('click', function(){
-    var job = new jenkinsJob("huga","blue","ジョブ名称１");
-    job.executeJob();
-  })
+  jenkinsCtr.writeTableHtml();
 
   var webview = $("#mainWebview")[0]
   //webviewの切り替えごとにイベント再設定が必要

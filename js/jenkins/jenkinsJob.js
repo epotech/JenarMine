@@ -24,7 +24,7 @@ var jenkinsJob = (function() {
   };
   proto.executeJob = function() {
     $.ajax({
-        url: url + "/job/huga/build",
+        url: url + "/job/"+this.name+"/build",
         dataType: "text",
         type: "GET",
       }).done(function() {
