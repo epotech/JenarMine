@@ -4,9 +4,9 @@ var currentTabName;
 document.onkeydown = function (e) {
     if (document.getElementById(currentTabName + '_frame')) {
         if (e.keyCode == 116) {
-            document.getElementById(currentTabName + '_frame').contentWindow.location.reload(true);
+            document.getElementById(currentTabName + '_frame').reload();
         } else if (e.keyCode == 8) {
-            document.getElementById(currentTabName + '_frame').contentWindow.history.back();
+            document.getElementById(currentTabName + '_frame').goBack();
         }
     }
 };
