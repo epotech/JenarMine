@@ -27,4 +27,8 @@ $(function () {
             });
         }
     });
+    
+    document.getElementById('tab1_frame').setAttribute('src', localStorage.getItem('url_redmine'));
+    document.getElementById('tab2_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
+    document.getElementById('tab3_frame').setAttribute('src', localStorage.getItem('url_sonar'));
 });
