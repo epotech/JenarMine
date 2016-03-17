@@ -7,7 +7,7 @@ $(function () {
             $(this).val(localStorage.getItem($(this).prop('id')));
         }
     });
-    
+
     //設定プロパティはすべてonblur時にlocalStorageに格納
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
@@ -20,7 +20,7 @@ $(function () {
             });
         }
     });
-    
+
     //webviewのsrcを変更
     document.getElementById('tab1_frame').setAttribute('src', localStorage.getItem('url_redmine'));
     document.getElementById('tab2_frame').setAttribute('src', localStorage.getItem('url_jenkins'));

@@ -4,6 +4,18 @@ body {
     background-color: #f7f7f7;
 }
 
+#tab1 .col-md-1,#tab1 .col-md-2,#tab1 .col-md-3,
+#tab1 .col-md-4,#tab1 .col-md-5,#tab1 .col-md-6,#tab1 .col-md-7,
+#tab1 .col-md-8,#tab1 .col-md-9,#tab1 .col-md-10,#tab1 .col-md-11{
+  padding: 0 0!important;
+  margin: 0 0!important;
+}
+#tab1 .container{
+  padding: 0 0!important;
+  margin: 0 0!important;
+  width:100%!important;
+  height:100%!important;
+}
 div {
     font-size: 1em;
 }
@@ -85,4 +97,3 @@ input:focus {
 textarea:focus {
 	background: #d6e6fa;
 }
-
