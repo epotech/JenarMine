@@ -26,6 +26,11 @@ var jenkinsJob = (function() {
                       + '</table></td>'
                     + '</tr>';
   };
+  proto.getMinRowHtml = function() {
+    return String() + '<tr>'
+                      + '<td class="job-panel-min '+this.status+'"></td>'
+                    + '</tr>';
+  };
   // ジョブの実行
   proto.executeJob = function() {
     var authParam = btoa(userName + ":" + apiKey);

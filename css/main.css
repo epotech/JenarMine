@@ -85,3 +85,11 @@ input:focus {
 textarea:focus {
 	background: #d6e6fa;
 }
+.redmine-webview-wrapper{
+  width:80%;
+  height:100%;
+  float: left;
+}
+.redmine-webview-wrapper-min{
+  width:95%;
+}

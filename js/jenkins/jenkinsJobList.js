@@ -14,9 +14,17 @@ var jenkinsJobList = (function() {
   var proto = jenkinsJobList.prototype;
   // テーブル表現取得
   proto.getTableHtml = function() {
-    var tableHtml = String() + "<table id='jenkins-job-list'>";
+    var tableHtml = String() + "<table class='jenkins-job-list'>";
     $.each(jobs, function(i, val) {
       tableHtml += val.getRowHtml();
+    });
+    return tableHtml + "</table>";
+  };
+  // テーブル表現取得(最小化時)
+  proto.getMinTableHtml = function() {
+    var tableHtml = String() + "<table class='jenkins-job-list-min'>";
+    $.each(jobs, function(i, val) {
+      tableHtml += val.getMinRowHtml();
     });
     return tableHtml + "</table>";
   };
