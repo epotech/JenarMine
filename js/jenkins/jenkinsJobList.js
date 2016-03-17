@@ -3,9 +3,9 @@
 //localstorageから全job情報を取得する
 //一括でjobの状態を更新する
 var jenkinsJobList = (function() {
-  var url = jenkinsCtr.siteUrl,
-      storageJobNames = jenkinsCtr.storagedJobNameList,
-      apiTokenParam = jenkinsCtr.apiTokenParam,
+  var url = jenkinsCtr.getStoragedJenkinsUrl(),
+      storageJobNames = jenkinsCtr.getStoragedJobNameList(),
+      apiKey = jenkinsCtr.getStoragedApiKey(),
       jobs = []; //サーバから取得したjobリスト
 
   // コンストラクタ
@@ -15,7 +15,7 @@ var jenkinsJobList = (function() {
   var proto = jenkinsJobList.prototype;
   // テーブル表現取得
   proto.getTableHtml = function() {
-    var tableHtml = String() + "<table>";
+    var tableHtml = String() + "<table id='jenkins-job-list'>";
     $.each(jobs, function(i, val) {
       tableHtml += val.getRowHtml();
     });
@@ -59,10 +59,8 @@ var jenkinsJobList = (function() {
 
   // privateメソッド定義
   var getAllJobFunc = function() {
-
-    console.log(url);
     return $.ajax({
-      url: url + "/api/json?depth=1&tree=jobs[name,color,displayName]&"+apiTokenParam,
+      url: url + "/api/json?depth=1&tree=jobs[name,color,displayName]&token="+apiKey,
       contentType: "application/json",
       dataType: 'json',
       type: "GET",

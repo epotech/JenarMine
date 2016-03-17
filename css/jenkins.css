@@ -1,0 +1,25 @@
+#jenkins-job-list .blue {
+    width: 80px;
+    height: 80px;
+    background: url('../images/jenkins/blue.png');
+    background-repeat: no-repeat;
+}
+#jenkins-job-list .red {
+    width: 80px;
+    height: 80px;
+    background: url('../images/jenkins/red.png');
+    background-repeat: no-repeat;
+}
+#jenkins-job-list .clock {
+    width: 80px;
+    height: 80px;
+    background: url('../images/jenkins/clock.png');
+    background-repeat: no-repeat;
+}
+#jenkins .title {
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    background: url('../images/jenkins/title.png');
+    background-repeat: no-repeat;
+}

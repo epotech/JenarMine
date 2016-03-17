@@ -1,6 +1,5 @@
 $(function() {
   jenkinsCtr.init();
-  jenkinsCtr.writeTableHtml();
 
   var webview = $("#mainWebview")[0]
   //webviewの切り替えごとにイベント再設定が必要

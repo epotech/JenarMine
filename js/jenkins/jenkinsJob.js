@@ -3,9 +3,10 @@
 //自身、子供のjobの状態を取得
 //jobの実行
 var jenkinsJob = (function() {
-  var url = jenkinsCtr.siteUrl,
-      apiTokenParam = jenkinsCtr.apiTokenParam,
-      name, status , dispName;
+  var url = jenkinsCtr.getStoragedJenkinsUrl(),
+      apiKey = jenkinsCtr.getStoragedApiKey(),
+      userName = jenkinsCtr.getUserName(),
+      name, status, dispName;
 
   // コンストラクタ
   var jenkinsJob = function(jobName, jobStatus, dispName) {
@@ -19,15 +20,21 @@ var jenkinsJob = (function() {
   proto.getRowHtml = function() {
     return String() + '<tr>'
                       + '<td>'+this.dispName+'</td>'
-                      + '<td>'+this.status+'</td>'
-                      + '<td><button class="'+this.name+'">実行</button></td>'
+                      + '<td><table>'
+                      + '<tr><td class="'+this.status+'"></td></tr>'
+                      + '<tr><td class="clock '+this.name+'"></td></tr>'
+                      + '</td></table>'
                     + '</tr>';
   };
   proto.executeJob = function() {
+    var authParam = btoa("admin" + ":" + apiKey);
     $.ajax({
-        url: url + "/job/"+this.name+"/build?"+apiTokenParam,
+        url: url + "/job/"+this.name+"/build",
         dataType: "text",
         type: "POST",
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', "Basic " + authParam);
+        },
       }).done(function() {
         console.info("success");
       })
