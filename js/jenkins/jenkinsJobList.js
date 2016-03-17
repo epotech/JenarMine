@@ -4,7 +4,9 @@
 //一括でjobの状態を更新する
 var jenkinsJobList = (function() {
   var url = jenkinsCtr.siteUrl,
-    jobs = []; //localstorage保存済みのjobリスト
+      storageJobNames = jenkinsCtr.storagedJobNameList,
+      apiTokenParam = jenkinsCtr.apiTokenParam,
+      jobs = []; //サーバから取得したjobリスト
 
   // コンストラクタ
   var jenkinsJobList = function() {};
@@ -16,11 +18,6 @@ var jenkinsJobList = (function() {
     var tableHtml = String() + "<table>";
     $.each(jobs, function(i, val) {
       tableHtml += val.getRowHtml();
-      //onclickイベント追加
-      $("#jenkins ."+val.name).on('click', function(){
-        console.log("aaa");
-        val.executeJob();
-      });
     });
     return tableHtml + "</table>";
   };
@@ -31,7 +28,7 @@ var jenkinsJobList = (function() {
     jobs = [];
     var jobMap = {};
     // web-apiで問い合わせ
-    getJobInfoHash()
+    getAllJobFunc()
       .done(function(result) {
         // 使いやすいようにjson結果をmapに変換
         $.each(result.jobs, function(i, val) {
@@ -39,10 +36,12 @@ var jenkinsJobList = (function() {
         });
 
         // localstorageに保存されているjob一覧読み込み
-        $.each(getStoragedJobList(), function(i, val) {
-          jobs.push(new jenkinsJob(jobMap[val].name,
-            jobMap[val].color,
-            jobMap[val].displayName));
+        $.each(storageJobNames, function(i, val) {
+          if(jobMap[val]){
+            jobs.push(new jenkinsJob(jobMap[val].name,
+              jobMap[val].color,
+              jobMap[val].displayName));
+          }
         });
         console.log(jobs);
         dfd.resolve();
@@ -50,21 +49,20 @@ var jenkinsJobList = (function() {
       .fail(function(data) {
         console.error(data);
         dfd.reject();
-      })
+      });
     return dfd.promise();
   };
 
-  // ジョブステータスを同期
-  proto.updateStatus = function() {
-    //jobsのステータスとapiから取得したステータスを比較して、変更があれば書き換える
+  proto.getJobs = function() {
+    return jobs;
   };
+
   // privateメソッド定義
-  var getStoragedJobList = function() {
-    return ["huga", "hoge"];
-  }
-  var getJobInfoHash = function() {
+  var getAllJobFunc = function() {
+
+    console.log(url);
     return $.ajax({
-      url: url + "/api/json?depth=1&tree=jobs[name,color,displayName]",
+      url: url + "/api/json?depth=1&tree=jobs[name,color,displayName]&"+apiTokenParam,
       contentType: "application/json",
       dataType: 'json',
       type: "GET",

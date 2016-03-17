@@ -4,7 +4,8 @@
 //jobの実行
 var jenkinsJob = (function() {
   var url = jenkinsCtr.siteUrl,
-    name, status , dispName;
+      apiTokenParam = jenkinsCtr.apiTokenParam,
+      name, status , dispName;
 
   // コンストラクタ
   var jenkinsJob = function(jobName, jobStatus, dispName) {
@@ -24,9 +25,9 @@ var jenkinsJob = (function() {
   };
   proto.executeJob = function() {
     $.ajax({
-        url: url + "/job/"+this.name+"/build",
+        url: url + "/job/"+this.name+"/build?"+apiTokenParam,
         dataType: "text",
-        type: "GET",
+        type: "POST",
       }).done(function() {
         console.info("success");
       })
