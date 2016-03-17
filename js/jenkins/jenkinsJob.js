@@ -28,7 +28,7 @@ var jenkinsJob = (function() {
   };
   // ジョブの実行
   proto.executeJob = function() {
-    var authParam = btoa("admin" + ":" + apiKey);
+    var authParam = btoa(userName + ":" + apiKey);
     $.ajax({
         url: url + "/job/"+this.name+"/build",
         dataType: "text",

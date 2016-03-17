@@ -35,6 +35,9 @@ var jenkinsCtr = (function() {
       });
   }
 
+  function minimize() {
+  }
+
   function getStoragedJenkinsUrl() {
     return localStorage.getItem('url_jenkins');
   }

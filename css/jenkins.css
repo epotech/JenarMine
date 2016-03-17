@@ -1,3 +1,27 @@
+#jenkins {
+  float: left;
+  width: 20%;
+  height: 100%;
+}
+#jenkins-body {
+  margin-bottom: 20px;
+}
+#jenkins-job-list {
+    width: 100%;
+}
+#jenkins-job-list .job-name {
+    width: 80%;
+}
+#jenkins-job-list .job-panel {
+    width: 20%;
+}
+#jenkins-footer {
+  width: 100%;
+  bottom: 0;
+  height: 20px;
+  position: absolute;
+  background-color: brown;
+}
 #jenkins-job-list .blue,
 #jenkins-job-list .blue_anime {
     width: 30px;
@@ -17,22 +41,4 @@
     height: 30px;
     background: url('../images/jenkins/clock.png');
     background-repeat: no-repeat;
-}
-#jenkins-job-list {
-    width: 100%;
-}
-#jenkins-job-list .job-name {
-    width: 80%;
-}
-#jenkins-job-list .job-panel {
-    width: 20%;
-}
-#jenkins-body {
-  margin-bottom: 5em;
-}
-#jenkins-footer {
-  bottom: 0;
-  height: 5em;
-  position: absolute;
-  background-color: black;
 }
