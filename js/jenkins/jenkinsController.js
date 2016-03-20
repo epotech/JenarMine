@@ -9,6 +9,7 @@ var jenkinsCtr = (function() {
     setInterval(function(){
         writeTableHtml();
     },pollingIntervalSecond * 1000);
+    //最小化、最大化ボタン押下時の挙動
     $(".minimize").on('click', function() {
       $(".jenkins-toggle").toggle(200);
       $(".redmine-webview-wrapper")
@@ -21,25 +22,24 @@ var jenkinsCtr = (function() {
     var jobList = new jenkinsJobList();
     jobList.updateAll()
       .done(function() {
-        $(".jenkins-job-list").remove();
+        $(".jenkins-job-list, .jenkins-job-list-min").remove();
         $(".jenkins-body").append(jobList.getTableHtml());
-        $(".jenkins-job-list-min").remove();
         $(".jenkins-body-min").append(jobList.getMinTableHtml());
         //onclickイベント追加
         $.each(jobList.getJobs(), function(i, val) {
           $(".jenkins-job-list ." + val.name).on('click', function() {
             val.executeJob();
+            $(this).fadeOut(500,function(){$(this).fadeIn(500)});
           });
         });
         //実行中のjobがあれば点滅
         setInterval(function(){
-          $('.blue_anime , .red_anime').fadeOut(500,function(){$(this).fadeIn(500)});;
+          $('.blue_anime , .red_anime').fadeOut(500,function(){$(this).fadeIn(500)});
         },1000);
       })
       .fail(function() {
-        $(".jenkins-job-list").remove();
-        $(".jenkins-job-list-min").remove();
-        $(".jenkins-body").append("Jobの取得エラー！jenkinsに接続できませんでした！");
+        $(".jenkins-job-list, .jenkins-job-list-min").remove();
+        $(".jenkins-body").append("<div class='jenkins-job-list'>jenkinsに接続できませんでした！</div>");
       });
   }
 
@@ -55,7 +55,7 @@ var jenkinsCtr = (function() {
     //apiがなければ空文字を返却する
     return "6f01982f39ce2b8cc55253e9d2714fd3";
   }
-  function getUserName() {
+  function getStoragedUserName() {
     return localStorage.getItem('userId_jenkins');
   }
   //公開フィールド、メソッドを返す
@@ -64,6 +64,6 @@ var jenkinsCtr = (function() {
     getStoragedApiKey: getStoragedApiKey,
     getStoragedJenkinsUrl: getStoragedJenkinsUrl,
     getStoragedJobNameList: getStoragedJobNameList,
-    getUserName: getUserName
+    getStoragedUserName: getStoragedUserName
   };
 })();

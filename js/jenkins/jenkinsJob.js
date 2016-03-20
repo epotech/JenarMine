@@ -5,7 +5,7 @@
 var jenkinsJob = (function() {
   var url = jenkinsCtr.getStoragedJenkinsUrl(),
       apiKey = jenkinsCtr.getStoragedApiKey(),
-      userName = jenkinsCtr.getUserName(),
+      userName = jenkinsCtr.getStoragedUserName(),
       name, status, dispName;
 
   // コンストラクタ

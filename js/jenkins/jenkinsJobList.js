@@ -14,7 +14,7 @@ var jenkinsJobList = (function() {
   var proto = jenkinsJobList.prototype;
   // テーブル表現取得
   proto.getTableHtml = function() {
-    var tableHtml = String() + "<table class='jenkins-job-list'>";
+    var tableHtml = String() + "<table class='jenkins-job-list table table-striped'>";
     $.each(jobs, function(i, val) {
       tableHtml += val.getRowHtml();
     });

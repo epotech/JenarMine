@@ -5,70 +5,78 @@
 }
 #jenkins-min {
   float: right;
-  width: 5%;
+  width: 2%;
   height: 100%;
 }
-
-.jenkins-body {
+.jenkins-header {
+  background-color: black;
+}
+.jenkins-header-min {
+  background-color: white;
+}
+.jenkins-body, .jenkins-body-min {
+  height: 100%;
+  background-color: white;
   margin-bottom: 20px;
 }
 .jenkins-job-list {
-    width: 100%;
+  width: 100%;
 }
 .jenkins-job-list .job-name {
-    width: 80%;
+  width: 87%;
 }
 .jenkins-job-list .job-panel {
-    width: 20%;
+  padding: 0px!important;
+  width: 13%;
 }
 .jenkins-footer {
   width: 20%;
   bottom: 0;
   height: 20px;
   position: absolute;
-  background-color: brown;
+  background-color: WhiteSmoke;
 }
 .jenkins-footer-min {
-  width: 5%;
+  width: 2%;
   bottom: 0;
   height: 20px;
   position: absolute;
-  background-color: brown;
+  background-color: WhiteSmoke;
+  text-align: center;
 }
-.jenkins-job-list .blue,
-.jenkins-job-list .blue_anime {
-    width: 30px;
-    height: 30px;
-    background: url('../images/jenkins/blue.png');
-    background-repeat: no-repeat;
+.jenkins-job-list .blue, .jenkins-job-list .blue_anime {
+  width: 30px;
+  height: 30px;
+  background: url('../images/jenkins/blue.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.jenkins-job-list .red,
-.jenkins-job-list .red_anime  {
-    width: 30px;
-    height: 30px;
-    background: url('../images/jenkins/red.png');
-    background-repeat: no-repeat;
+.jenkins-job-list .red, .jenkins-job-list .red_anime {
+  width: 30px;
+  height: 30px;
+  background: url('../images/jenkins/red.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.jenkins-job-list-min .blue,
-.jenkins-job-list-min .blue_anime {
-    width: 30px;
-    height: 30px;
-    background: url('../images/jenkins/blue.png');
-    background-repeat: no-repeat;
+.jenkins-job-list-min .blue, .jenkins-job-list-min .blue_anime {
+  width: 25px;
+  height: 25px;
+  background: url('../images/jenkins/blue.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.jenkins-job-list-min .red,
-.jenkins-job-list-min .red_anime  {
-    width: 30px;
-    height: 30px;
-    background: url('../images/jenkins/red.png');
-    background-repeat: no-repeat;
+.jenkins-job-list-min .red, .jenkins-job-list-min .red_anime {
+  width: 25px;
+  height: 25px;
+  background: url('../images/jenkins/red.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
 .jenkins-job-list .clock {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    background: url('../images/jenkins/clock.png');
-    background-repeat: no-repeat;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background: url('../images/jenkins/clock.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
