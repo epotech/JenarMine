@@ -35,6 +35,7 @@
   height: 20px;
   position: absolute;
   background-color: WhiteSmoke;
+  cursor: pointer;
 }
 .jenkins-footer-min {
   width: 2%;
@@ -43,6 +44,7 @@
   position: absolute;
   background-color: WhiteSmoke;
   text-align: center;
+  cursor: pointer;
 }
 .jenkins-job-list .blue, .jenkins-job-list .blue_anime {
   width: 30px;

@@ -48,12 +48,12 @@ var jenkinsCtr = (function() {
   }
 
   function getStoragedJobNameList() {
-    return ["huga", "hoge"];
+    return [""];
   }
 
   function getStoragedApiKey() {
     //apiがなければ空文字を返却する
-    return "6f01982f39ce2b8cc55253e9d2714fd3";
+    return "e94798d69c81d02a45ec09cf138e5723";
   }
   function getStoragedUserName() {
     return localStorage.getItem('userId_jenkins');
