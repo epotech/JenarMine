@@ -1,3 +1,15 @@
+//スイッチボタンでONになっているサービスのみを表示するようにするメソッド
+function useServiceChange() {
+    $('[name="useService"]').each(function () {
+        console.info($(this).bootstrapSwitch('state'));
+        if ($(this).bootstrapSwitch('state')) {
+            $('.' + $(this).prop('id').split('useService_')[1] + '-group').css('display', 'block');
+        } else {
+            $('.' + $(this).prop('id').split('useService_')[1] + '-group').css('display', 'none');
+        }
+    });
+}
+
 $(function () {
     // 初期表示にlocalstorageから利用するサービス情報をロード
     $('.settingProp').each(function () {
@@ -13,6 +25,7 @@ $(function () {
         if ($(this).attr('type') == 'checkbox') {
             $(this).on('switchChange.bootstrapSwitch', function (event, state) {
                 localStorage.setItem($(this).prop('id'), state);
+                useServiceChange();
             });
         } else {
             $(this).blur(function () {
@@ -20,6 +33,9 @@ $(function () {
             });
         }
     });
+    
+    //利用しないサービスは非表示にする
+    useServiceChange();
 
     //webviewのsrcを変更
     document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine'));
