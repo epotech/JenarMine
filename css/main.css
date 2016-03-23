@@ -34,22 +34,22 @@ p.tabs a {
     border-radius: 12px 12px 0px 0px;
 }
 
-p.tabs a.tab1 {
+p.tabs a.redmine {
     background-color: #cc1237;
     color: white;
 }
 
-p.tabs a.tab2 {
+p.tabs a.jenkins {
     background-color: #000000;
     color: white;
 }
 
-p.tabs a.tab3 {
+p.tabs a.sonar {
     background-color: #4b9fd5;
     color: white;
 }
 
-p.tabs a.tab4 {
+p.tabs a.setting {
     float: right;
     text-align: right;
 }
@@ -59,17 +59,17 @@ div.tab {
     clear: left;
 }
 
-div#tab1 {
+div#redmine {
     height: 98%;
     overflow: hidden;
 }
 
-div#tab2 {
+div#jenkins {
     height: 98%;
     overflow: hidden;
 }
 
-div#tab3 {
+div#sonar {
     height: 98%;
     overflow: hidden;
 }

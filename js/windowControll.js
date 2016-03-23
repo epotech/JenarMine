@@ -18,13 +18,13 @@ $(function() {
 //タブを変更する際の挙動を定義
 function ChangeTab(tabname) {
   $(function() {
-    $('#tab1').css('display', 'none');
-    $('#tab1_lnk').css('opacity', '0.6');
-    $('#tab2').css('display', 'none');
-    $('#tab2_lnk').css('opacity', '0.6');
-    $('#tab3').css('display', 'none');
-    $('#tab3_lnk').css('opacity', '0.6');
-    $('#tab4').css('display', 'none');
+    $('#redmine').css('display', 'none');
+    $('#redmine_lnk').css('opacity', '0.6');
+    $('#jenkins').css('display', 'none');
+    $('#jenkins_lnk').css('opacity', '0.6');
+    $('#sonar').css('display', 'none');
+    $('#sonar_lnk').css('opacity', '0.6');
+    $('#setting').css('display', 'none');
     $('#' + tabname).css('display', 'block');
     $('#' + tabname + '_lnk').css('opacity', '1.0');
     currentTabName = tabname;

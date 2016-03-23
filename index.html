@@ -4,25 +4,25 @@
   <head>
     <meta charset="UTF-8">
     <title>JenarMine</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
-    <link rel="stylesheet" type="text/css" href="css/jenkins.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/jenkins.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="./css/bootstrap-switch.min.css" rel="stylesheet">
   </head>
 
-  <body onload="ChangeTab('tab1')">
+  <body onload="ChangeTab('redmine')">
     <p class="tabs" style="width: 100%;">
-      <a id="tab1_lnk" href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">Redmine</a>
-      <a id="tab2_lnk" href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">Jenkins</a>
-      <a id="tab3_lnk" href="#tab3" class="tab3" onclick="ChangeTab('tab3'); return false;">Sonar</a>
-      <a id="tab4_lnk" href="#tab4" class="tab4" onclick="ChangeTab('tab4'); return false;"><img src="./images/setting.svg" height="20%" width="20%"></a>
+      <a id="redmine_lnk" href="#redmine" class="redmine" onclick="ChangeTab('redmine'); return false;">Redmine</a>
+      <a id="jenkins_lnk" href="#jenkins" class="jenkins" onclick="ChangeTab('jenkins'); return false;">Jenkins</a>
+      <a id="sonar_lnk" href="#sonar" class="sonar" onclick="ChangeTab('sonar'); return false;">Sonar</a>
+      <a id="setting_lnk" href="#setting" class="setting" onclick="ChangeTab('setting'); return false;"><img src="./images/setting.svg" height="20%" width="20%"></a>
     </p>
-    <div id="tab1" class="tab" style="display: none">
+    <div id="redmine" class="tab" style="display: none">
       <div class=redmine-webview-wrapper>
-        <webview id="tab1_frame" style="width:100%; height:100%;"></webview>
+        <webview id="redmine_frame" style="width:100%; height:100%;"></webview>
       </div>
-      <div id="jenkins" class="jenkins-toggle">
+      <div id="jenkins-inline" class="jenkins-toggle">
         <div class="jenkins-header">
           <img src="./images/jenkins/title.png" width="100%">
         </div>
@@ -37,13 +37,13 @@
         <div class="jenkins-footer-min minimize"><span class="glyphicon glyphicon-chevron-left"></span></div>
       </div>
     </div>
-    <div id="tab2" class="tab" style="display: none">
-      <webview id="tab2_frame" style="width:100%; height:100%;"></webview>
+    <div id="jenkins" class="tab" style="display: none">
+      <webview id="jenkins_frame" style="width:100%; height:100%;"></webview>
     </div>
-    <div id="tab3" class="tab" style="display: none">
-      <webview id="tab3_frame" style="width:100%; height:100%;"></webview>
+    <div id="sonar" class="tab" style="display: none">
+      <webview id="sonar_frame" style="width:100%; height:100%;"></webview>
     </div>
-    <div id="tab4" class="tab" style="display: none; padding-top: 10px;">
+    <div id="setting" class="tab" style="display: none; padding-top: 10px;">
       <form class="form-horizontal">
         <div class="form-group">
           <label for="useService" class="col-md-2 control-label">利用サービス</label>
