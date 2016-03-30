@@ -45,12 +45,29 @@
     </div>
     <div id="setting" class="tab" style="display: none; padding-top: 10px;">
         <form class="form-horizontal">
+            <div class="redmine-group">
+                <div class="form-group">
+                    <label for="url_redmine" class="col-md-2 control-label">URL(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="url_redmine" class="form-control settingProp" type="text" placeholder="RedmineのURL" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userId_redmine" class="col-md-2 control-label">ユーザID(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="userId_redmine" class="form-control settingProp" type="text" placeholder="ユーザID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password_redmine" class="col-md-2 control-label">パスワード(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="password_redmine" class="form-control settingProp" type="text" placeholder="パスワード" />
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="useService" class="col-md-2 control-label">利用サービス</label>
                 <div id="useService" style="display:inline-block;" class="col-md-6">
-                    <div>Redmine</div>
-                    <input id='useService_redmine' type="checkbox" class="settingProp" name="useService" value="Redmine">
-                    <label for='useService_redmine'></label>
                     <div>Jenkins</div>
                     <input id='useService_jenkins' type="checkbox" class="settingProp" name="useService" value="Jenkins">
                     <label for='useService_jenkins'></label>
@@ -96,26 +113,6 @@
                     <label for="password_sonar" class="col-md-2 control-label">パスワード(Sonar)</label>
                     <div class="col-md-6">
                         <input id="password_sonar" class="form-control settingProp" type="text" placeholder="パスワード" />
-                    </div>
-                </div>
-            </div>
-            <div class="redmine-group">
-                <div class="form-group">
-                    <label for="url_redmine" class="col-md-2 control-label">URL(Redmine)</label>
-                    <div class="col-md-6">
-                        <input id="url_redmine" class="form-control settingProp" type="text" placeholder="RedmineのURL" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userId_redmine" class="col-md-2 control-label">ユーザID(Redmine)</label>
-                    <div class="col-md-6">
-                        <input id="userId_redmine" class="form-control settingProp" type="text" placeholder="ユーザID" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password_redmine" class="col-md-2 control-label">パスワード(Redmine)</label>
-                    <div class="col-md-6">
-                        <input id="password_redmine" class="form-control settingProp" type="text" placeholder="パスワード" />
                     </div>
                 </div>
             </div>

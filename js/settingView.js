@@ -1,7 +1,6 @@
 //スイッチボタンでONになっているサービスのみを表示するようにするメソッド
 function useServiceChange() {
     $('[name="useService"]').each(function () {
-        console.info($(this).bootstrapSwitch('state'));
         if ($(this).bootstrapSwitch('state')) {
             $('.' + $(this).prop('id').split('useService_')[1] + '-group').css('display', 'block');
         } else {
@@ -11,6 +10,9 @@ function useServiceChange() {
 }
 
 $(function () {
+    //Redmineは必ず利用する
+    localStorage.setItem('useService_redmine', 'true');
+    
     // 初期表示にlocalstorageから利用するサービス情報をロード
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
