@@ -20,8 +20,7 @@ app.on('ready', function () {
     // メイン画面の表示。ウィンドウの幅、高さを指定できる
     mainWindow = new BrowserWindow({
         width: 1024,
-        height: 768,
-        'node-integration': false
+        height: 768
     });
     mainWindow.loadURL('file://' + __dirname + '/../index.html');
 

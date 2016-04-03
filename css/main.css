@@ -49,9 +49,9 @@ p.tabs a.sonar {
     color: white;
 }
 
-p.tabs a.setting {
-    float: right;
-    text-align: right;
+p.tabs a.setting{
+  float: right;
+  text-align: right;
 }
 
 div.tab {
@@ -113,4 +113,25 @@ div.sonar-group {
     margin: 10px;
     padding: 10px;
     border-radius: 12px 12px 12px 12px;
+}
+
+
+.search{
+  float: right;
+  text-align: right;
+}
+
+.search-word{
+  width:20%;
+}
+
+.search-panel{
+  display: none;
+  border: 1px solid LightGrey;
+  border-radius: 5px;
+  padding:10px;
+  background-color: WhiteSmoke;
+  position: fixed;
+  top: 10px;
+  right: 20px;
 }

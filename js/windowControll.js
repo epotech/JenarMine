@@ -1,5 +1,6 @@
 $(function() {
   jenkinsCtr.init();
+  searchView.setWebview($('#jenkins_frame')[0]);
 
   //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
   document.onkeydown = function(e) {
@@ -27,6 +28,7 @@ function ChangeTab(tabname) {
     $('#setting').css('display', 'none');
     $('#' + tabname).css('display', 'block');
     $('#' + tabname + '_lnk').css('opacity', '1.0');
+    searchView.setWebview($('#' + tabname).find("webview")[0]);
     currentTabName = tabname;
   });
 }
