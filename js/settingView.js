@@ -15,14 +15,14 @@ function setLocalStorage(key, value) {
 }
 
 //ジョブを追加するフォームをappendするメソッド
-function appendFavoriteJob(id) {
-    $('#favorite_job_group').append('<div id="' + id + '"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label><div class="col-md-6"><input id="' + id + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="ジョブID" /></div></div></div>');
+function appendFavoriteJob(id, value) {
+    $('#favorite_job_group').append('<div id="' + id + '"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label><div class="col-md-6"><input id="' + id + '" value="' + value + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="ジョブID" /></div></div></div>');
 }
 
 //Jenkinsのジョブ追加ボタンが押下された際に、ジョブを追加するフォームをappendするメソッド
 function addFavoriteJob() {
     localStorage.setItem('favorite_job_count', parseInt(localStorage.getItem('favorite_job_count') == undefined ? 0 : localStorage.getItem('favorite_job_count')) + 1);
-    appendFavoriteJob('favorite_job' + localStorage.getItem('favorite_job_count'));
+    appendFavoriteJob('favorite_jobId' + localStorage.getItem('favorite_job_count'), '');
 }
 
 $(function () {
@@ -55,7 +55,7 @@ $(function () {
     //登録されているfavorite job分だけ設定画面のJenkinsジョブにDOMを追加する
     for (var i=0 ; i<localStorage.length ; i++){
         if (localStorage.key(i).startsWith('favorite_jobId')) {
-            appendFavoriteJob(localStorage.key(i));
+            appendFavoriteJob(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
         }
     }
     
