@@ -9,6 +9,22 @@ function useServiceChange() {
     });
 }
 
+//ローカルストレージに値を保存するためのメソッド
+function setLocalStorage(key, value) {
+    localStorage.setItem(key, value);
+}
+
+//ジョブを追加するフォームをappendするメソッド
+function appendFavoriteJob(id) {
+    $('#favorite_job_group').append('<div id="' + id + '"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label><div class="col-md-6"><input id="' + id + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="ジョブID" /></div></div></div>');
+}
+
+//Jenkinsのジョブ追加ボタンが押下された際に、ジョブを追加するフォームをappendするメソッド
+function addFavoriteJob() {
+    localStorage.setItem('favorite_job_count', parseInt(localStorage.getItem('favorite_job_count') == undefined ? 0 : localStorage.getItem('favorite_job_count')) + 1);
+    appendFavoriteJob('favorite_job' + localStorage.getItem('favorite_job_count'));
+}
+
 $(function () {
     //Redmineは必ず利用する
     localStorage.setItem('useService_redmine', 'true');
@@ -31,10 +47,17 @@ $(function () {
             });
         } else {
             $(this).blur(function () {
-                localStorage.setItem($(this).prop('id'), $(this).val());
+                setLocalStorage($(this).prop('id'), $(this).val());
             });
         }
     });
+    
+    //登録されているfavorite job分だけ設定画面のJenkinsジョブにDOMを追加する
+    for (var i=0 ; i<localStorage.length ; i++){
+        if (localStorage.key(i).startsWith('favorite_jobId')) {
+            appendFavoriteJob(localStorage.key(i));
+        }
+    }
     
     //利用しないサービスは非表示にする
     useServiceChange();

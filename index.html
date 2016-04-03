@@ -84,16 +84,34 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="userId_jenkins" class="col-md-2 control-label">ユーザID(Jenkins)</label>
+                    <label for="API_key_jenkins" class="col-md-2 control-label">API key(Jenkins)</label>
                     <div class="col-md-6">
-                        <input id="userId_jenkins" class="form-control settingProp" type="text" placeholder="ユーザID" />
+                        <input id="API_key_jenkins" class="form-control settingProp" type="text" placeholder="JenkinsのAPI key" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password_jenkins" class="col-md-2 control-label">パスワード(Jenkins)</label>
-                    <div class="col-md-6">
-                        <input id="password_jnekins" class="form-control settingProp" type="text" placeholder="パスワード" />
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <button type="button" class="btn btn-primary" style="margin-bottom: 10px;" onclick="addFavoriteJob()">Add favorite job</button>
+                </div>
+                <div id="favorite_job_group">
+                    <!--
+                    <div id="favorite_job1">
+                        <div class="form-group">
+                            <label for="favorite_jobId" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label>
+                            <div class="col-md-6">
+                                <input id="favorite_jobId" class="form-control settingProp" type="text" placeholder="ジョブID" />
+                            </div>
+                            <div id="add_job_param" class="glyphicon glyphicon-plus-sign col-md-2"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="job_param" class="col-md-2 control-label">ジョブパラメータ(Jenkins)</label>
+                            <div id="job_param" class="col-md-6">
+                                <input id="key" class="form-control settingProp" type="text" placeholder="key" />
+                                <input id="value" class="form-control settingProp" type="text" placeholder="value" />
+                            </div>
+                        </div>
                     </div>
+                    -->
                 </div>
             </div>
             <div class="sonar-group">
@@ -101,18 +119,6 @@
                     <label for="url_sonar" class="col-md-2 control-label">URL(Sonar)</label>
                     <div class="col-md-6">
                         <input id="url_sonar" class="form-control settingProp" type="text" placeholder="SonarのURL" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userId_sonar" class="col-md-2 control-label">ユーザID(Sonar)</label>
-                    <div class="col-md-6">
-                        <input id="userId_sonar" class="form-control settingProp" type="text" placeholder="ユーザID" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password_sonar" class="col-md-2 control-label">パスワード(Sonar)</label>
-                    <div class="col-md-6">
-                        <input id="password_sonar" class="form-control settingProp" type="text" placeholder="パスワード" />
                     </div>
                 </div>
             </div>
