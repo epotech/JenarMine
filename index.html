@@ -2,121 +2,121 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>JenarMine</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <link rel="stylesheet" type="text/css" href="css/jenkins.css">
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
-  <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-  <link href="./css/bootstrap-switch.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>JenarMine</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/jenkins.css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-switch.min.css" rel="stylesheet">
 </head>
 
 <body onload="ChangeTab('redmine')">
-  <p class="tabs" style="width: 100%;">
-    <a id="redmine_lnk" href="#redmine" class="redmine redmine-group" onclick="ChangeTab('redmine'); return false;">Redmine</a>
-    <a id="jenkins_lnk" href="#jenkins" class="jenkins jenkins-group" onclick="ChangeTab('jenkins'); return false;">Jenkins</a>
-    <a id="sonar_lnk" href="#sonar" class="sonar sonar-group" onclick="ChangeTab('sonar'); return false;">Sonar</a>
-    <a id="setting_lnk" href="#setting" class="setting" onclick="ChangeTab('setting'); return false;"><img src="./images/setting.svg" height="20%" width="20%"></a>
-    <span class="glyphicon glyphicon-search search"></span>
-  </p>
-  <div class="search-panel">
-    <input type="text" class="search-word form-control" placeholder="search word here" style="margin-top:1px;width:200px; float:left"></input>
-    <div class="btn-group" role="group" style="float:left">
-      <button type="button" class="search-prev btn btn-default glyphicon glyphicon-chevron-up"></button>
-      <button type="button" class="search-next btn btn-default glyphicon glyphicon-chevron-down"></button>
+    <p class="tabs" style="width: 100%;">
+        <a id="redmine_lnk" href="#redmine" class="redmine redmine-group" onclick="ChangeTab('redmine'); return false;">Redmine</a>
+        <a id="jenkins_lnk" href="#jenkins" class="jenkins jenkins-group" onclick="ChangeTab('jenkins'); return false;">Jenkins</a>
+        <a id="sonar_lnk" href="#sonar" class="sonar sonar-group" onclick="ChangeTab('sonar'); return false;">Sonar</a>
+        <a id="setting_lnk" href="#setting" class="setting" onclick="ChangeTab('setting'); return false;"><img src="./images/setting.svg" height="20%" width="20%"></a>
+        <span class="glyphicon glyphicon-search search"></span>
+    </p>
+    <div class="search-panel">
+        <input type="text" class="search-word form-control" placeholder="search word here" style="margin-top:1px;width:200px; float:left">
+        <div class="btn-group" role="group" style="float:left">
+            <button type="button" class="search-prev btn btn-default glyphicon glyphicon-chevron-up"></button>
+            <button type="button" class="search-next btn btn-default glyphicon glyphicon-chevron-down"></button>
+        </div>
+        <span class="badge search-count">0/0</span>
+        <span class="glyphicon glyphicon-remove"></span>
     </div>
-    <span class="badge search-count">0/0</span>
-    <span class="glyphicon glyphicon-remove"></span>
-  </div>
-  <div id="redmine" class="tab" style="display: none">
-    <div class=redmine-webview-wrapper>
-      <webview id="redmine_frame" style="width:100%; height:100%;"></webview>
+    <div id="redmine" class="tab" style="display: none">
+        <div class=redmine-webview-wrapper>
+            <webview id="redmine_frame" style="width:100%; height:100%;" preload="./js/test.js"></webview>
+        </div>
+        <div id="jenkins-inline" class="jenkins-toggle">
+            <div class="jenkins-header">
+                <img src="./images/jenkins/title.png" width="100%">
+            </div>
+            <div class="jenkins-body"></div>
+            <div class="jenkins-footer minimize"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></div>
+        </div>
+        <div id="jenkins-min" class="jenkins-toggle" style="display: none">
+            <div class="jenkins-header-min">
+                <img src="./images/jenkins/logo.png" width="100%">
+            </div>
+            <div class="jenkins-body-min"></div>
+            <div class="jenkins-footer-min minimize"><span class="glyphicon glyphicon-chevron-left"></span></div>
+        </div>
     </div>
-    <div id="jenkins-inline" class="jenkins-toggle">
-      <div class="jenkins-header">
-        <img src="./images/jenkins/title.png" width="100%">
-      </div>
-      <div class="jenkins-body"></div>
-      <div class="jenkins-footer minimize"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></div>
+    <div id="jenkins" class="tab" style="display: none">
+        <webview id="jenkins_frame" style="width:100%; height:100%;"></webview>
     </div>
-    <div id="jenkins-min" class="jenkins-toggle" style="display: none">
-      <div class="jenkins-header-min">
-        <img src="./images/jenkins/logo.png" width="100%">
-      </div>
-      <div class="jenkins-body-min"></div>
-      <div class="jenkins-footer-min minimize"><span class="glyphicon glyphicon-chevron-left"></span></div>
+    <div id="sonar" class="tab" style="display: none">
+        <webview id="sonar_frame" style="width:100%; height:100%;"></webview>
     </div>
-  </div>
-  <div id="jenkins" class="tab" style="display: none">
-    <webview id="jenkins_frame" style="width:100%; height:100%;"></webview>
-  </div>
-  <div id="sonar" class="tab" style="display: none">
-    <webview id="sonar_frame" style="width:100%; height:100%;"></webview>
-  </div>
-  <div id="setting" class="tab" style="display: none; padding-top: 10px;">
-    <form class="form-horizontal">
-      <div class="redmine-group">
-        <div class="form-group">
-          <label for="url_redmine" class="col-md-2 control-label">URL(Redmine)</label>
-          <div class="col-md-6">
-            <input id="url_redmine" class="form-control settingProp" type="text" placeholder="RedmineのURL" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="userId_redmine" class="col-md-2 control-label">ユーザID(Redmine)</label>
-          <div class="col-md-6">
-            <input id="userId_redmine" class="form-control settingProp" type="text" placeholder="ユーザID" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password_redmine" class="col-md-2 control-label">パスワード(Redmine)</label>
-          <div class="col-md-6">
-            <input id="password_redmine" class="form-control settingProp" type="text" placeholder="パスワード" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="API_key_redmine" class="col-md-2 control-label">API key(Redmine)</label>
-          <div class="col-md-6">
-            <input id="API_key_redmine" class="form-control settingProp" type="text" placeholder="RedmineのAPI key" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="notification_interval_redmine" class="col-md-2 control-label">通知間隔(Redmine)</label>
-          <div class="col-md-6">
-            <input id="notification_interval_redmine" class="form-control settingProp" type="text" placeholder="自タスク期限通知間隔" />
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="useService" class="col-md-2 control-label">利用サービス</label>
-        <div id="useService" style="display:inline-block;" class="col-md-6">
-          <div>Jenkins</div>
-          <input id='useService_jenkins' type="checkbox" class="settingProp" name="useService" value="Jenkins">
-          <label for='useService_jenkins'></label>
-          <div>Sonar</div>
-          <input id='useService_sonar' type="checkbox" class="settingProp" name="useService" value="Sonar">
-          <label for='useService_sonar'></label>
-        </div>
-      </div>
-      <div class="jenkins-group">
-        <div class="form-group">
-          <label for="url_jenkins" class="col-md-2 control-label">URL(Jenkins)</label>
-          <div class="col-md-6">
-            <input id="url_jenkins" class="form-control settingProp" type="text" placeholder="JenkinsのURL" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="API_key_jenkins" class="col-md-2 control-label">API key(Jenkins)</label>
-          <div class="col-md-6">
-            <input id="API_key_jenkins" class="form-control settingProp" type="text" placeholder="JenkinsのAPI key" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2"></div>
-          <button type="button" class="btn btn-primary" style="margin-bottom: 10px; margin-left: 15px;" onclick="addFavoriteJob()">Add favorite job</button>
-        </div>
-        <div id="favorite_job_group">
-          <!--
+    <div id="setting" class="tab" style="display: none; padding-top: 10px;">
+        <form class="form-horizontal">
+            <div class="redmine-group">
+                <div class="form-group">
+                    <label for="url_redmine" class="col-md-2 control-label">URL(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="url_redmine" class="form-control settingProp" type="text" placeholder="RedmineのURL" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userId_redmine" class="col-md-2 control-label">ユーザID(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="userId_redmine" class="form-control settingProp" type="text" placeholder="ユーザID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password_redmine" class="col-md-2 control-label">パスワード(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="password_redmine" class="form-control settingProp" type="text" placeholder="パスワード" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="API_key_redmine" class="col-md-2 control-label">API key(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="API_key_redmine" class="form-control settingProp" type="text" placeholder="RedmineのAPI key" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notification_interval_redmine" class="col-md-2 control-label">通知間隔(Redmine)</label>
+                    <div class="col-md-6">
+                        <input id="notification_interval_redmine" class="form-control settingProp" type="text" placeholder="自タスク期限通知間隔" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="useService" class="col-md-2 control-label">利用サービス</label>
+                <div id="useService" style="display:inline-block;" class="col-md-6">
+                    <div>Jenkins</div>
+                    <input id='useService_jenkins' type="checkbox" class="settingProp" name="useService" value="Jenkins">
+                    <label for='useService_jenkins'></label>
+                    <div>Sonar</div>
+                    <input id='useService_sonar' type="checkbox" class="settingProp" name="useService" value="Sonar">
+                    <label for='useService_sonar'></label>
+                </div>
+            </div>
+            <div class="jenkins-group">
+                <div class="form-group">
+                    <label for="url_jenkins" class="col-md-2 control-label">URL(Jenkins)</label>
+                    <div class="col-md-6">
+                        <input id="url_jenkins" class="form-control settingProp" type="text" placeholder="JenkinsのURL" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="API_key_jenkins" class="col-md-2 control-label">API key(Jenkins)</label>
+                    <div class="col-md-6">
+                        <input id="API_key_jenkins" class="form-control settingProp" type="text" placeholder="JenkinsのAPI key" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <button type="button" class="btn btn-primary" style="margin-bottom: 10px; margin-left: 15px;" onclick="addFavoriteJob()">Add favorite job</button>
+                </div>
+                <div id="favorite_job_group">
+                    <!--
                     <div id="favorite_job1">
                         <div class="form-group">
                             <label for="favorite_jobId" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label>
@@ -134,30 +134,30 @@
                         </div>
                     </div>
                     -->
-        </div>
-      </div>
-      <div class="sonar-group">
-        <div class="form-group">
-          <label for="url_sonar" class="col-md-2 control-label">URL(Sonar)</label>
-          <div class="col-md-6">
-            <input id="url_sonar" class="form-control settingProp" type="text" placeholder="SonarのURL" />
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <script>
-    window.jQuery = window.$ = require('./js/jquery-1.12.0.min.js');
-  </script>
-  <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
-  <script type="text/javascript" src="js/windowControll.js"></script>
-  <script type="text/javascript" src="js/settingView.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap-switch.min.js"></script>
-  <script type="text/javascript" src="js/jenkins/jenkinsController.js"></script>
-  <script type="text/javascript" src="js/jenkins/jenkinsJob.js"></script>
-  <script type="text/javascript" src="js/jenkins/jenkinsJobList.js"></script>
-  <script type="text/javascript" src="js/searchView.js"></script>
+                </div>
+            </div>
+            <div class="sonar-group">
+                <div class="form-group">
+                    <label for="url_sonar" class="col-md-2 control-label">URL(Sonar)</label>
+                    <div class="col-md-6">
+                        <input id="url_sonar" class="form-control settingProp" type="text" placeholder="SonarのURL" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        window.jQuery = window.$ = require('./js/jquery-1.12.0.min.js');
+    </script>
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="js/windowControll.js"></script>
+    <script type="text/javascript" src="js/settingView.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/jenkins/jenkinsController.js"></script>
+    <script type="text/javascript" src="js/jenkins/jenkinsJob.js"></script>
+    <script type="text/javascript" src="js/jenkins/jenkinsJobList.js"></script>
+    <script type="text/javascript" src="js/searchView.js"></script>
 
 </body>
 
