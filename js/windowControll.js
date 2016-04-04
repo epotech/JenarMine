@@ -1,6 +1,5 @@
 $(function () {
     jenkinsCtr.init();
-    searchView.setWebview($('#jenkins_frame')[0]);
 
     //localStorageからユーザID/パスワードを取得して自動的にログインを行う
     var executedFlag = false;

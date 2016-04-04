@@ -5,6 +5,7 @@ var searchView = (function() {
   var activeIndex = '';
   var targetFrame;
 
+
   function setEvent() {
     //検索件数表示
     targetFrame.addEventListener("found-in-page", function(e) {
@@ -21,17 +22,30 @@ var searchView = (function() {
       }
     });
 
-    $(".search").on("click.searchFunc" ,function(){
+    $(".search , .remove-search").on("click.searchFunc", function() {
       $(".search-panel").toggle(100);
+      clearSearch();
+      $(".search-word").focus();
+    });
+
+    $(document).on("keydown.searchFunc", function(e) {
+      if (e.ctrlKey && e.keyCode == 70) {
+        $(".search-panel").toggle(100);
+        clearSearch();
+        $(".search-word").focus();
+      }
     });
 
     $(".search-word").on("keyup.searchFunc", function(e) {
-      if ($(this).val().length == 0) {
-        $(".search-count").text("0/0");
-        targetFrame.stopFindInPage('clearSelection');
-        return;
+      // 監視キーは、アルファベット、数字、エンター、バックスペース
+      if ((65 <= e.which && e.which < 65 + 26) || (48 <= e.which && e.which < 48 + 10)
+      || (96 <= e.which && e.which < 96 + 10) || (e.which == 13) || (e.which == 8)) {
+        if ($(this).val().length == 0) {
+          clearSearch();
+          return;
+        }
+        search($(this).val(), true);
       }
-      search($(this).val(), true);
     });
     $(".search-next").on("click.searchFunc", function() {
       search(previousText, true);
@@ -47,32 +61,43 @@ var searchView = (function() {
       findNext: true,
       forward: isForward
     };
-    if (previousText === text) {
-      // 前回の検索時とテキストが変わっていないので次のマッチを検索
-      targetFrame.findInPage(text, option);
-    } else {
-      // 検索開始
-      previousText = text;
-      targetFrame.findInPage(text);
-    }
+    try {
+      if (previousText === text) {
+        // 前回の検索時とテキストが変わっていないので次のマッチを検索
+        targetFrame.findInPage(text, option);
+      } else {
+        // 検索開始
+        previousText = text;
+        targetFrame.stopFindInPage('clearSelection');
+        targetFrame.findInPage(text);
+      }
+    } catch (e) {}
   }
 
   function setWebview(viewObj) {
+    if (!viewObj) return;
     targetFrame = viewObj;
     clearSearch();
     // イベントを初期化する
     unbindAll();
     setEvent();
   }
-  function unbindAll(){
-    targetFrame.removeEventListener("found-in-page",function(){});
-    $(".search,.search-word,.search-next,.search-prev").off(".searchFunc");
+
+  function unbindAll() {
+    targetFrame.removeEventListener("found-in-page", function() {});
+    $(".search,.remove-search,.search-word,.search-next,.search-prev").off(".searchFunc");
+    $(document).off(".searchFunc");
   }
-  function clearSearch(){
+
+  function clearSearch() {
     //画面表示を初期化する
+    previousText = '';
+    activeIndex = '';
     $(".search-word").val("");
     $(".search-count").text("0/0");
-    // targetFrame.stopFindInPage('clearSelection');
+    if (targetFrame.getWebContents()) {
+      targetFrame.stopFindInPage('clearSelection');
+    }
   }
 
   //公開フィールド、メソッドを返す

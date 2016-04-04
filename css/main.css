@@ -86,12 +86,12 @@ textarea:focus {
 	background: #d6e6fa;
 }
 .redmine-webview-wrapper{
-  width:80%;
+  width : calc(100% - 200px) ;
   height:100%;
   float: left;
 }
 .redmine-webview-wrapper-min{
-  width:98%;
+  width : calc(100% - 20px) ;
 }
 
 div.jenkins-group {
@@ -119,19 +119,28 @@ div.sonar-group {
 .search{
   float: right;
   text-align: right;
+  cursor: pointer;
 }
-
+.remove-search{
+  cursor: pointer;
+}
 .search-word{
   width:20%;
 }
-
+.search-count{
+  margin-left: 3px;
+  margin-top: 11px;
+}
 .search-panel{
   display: none;
   border: 1px solid LightGrey;
   border-radius: 5px;
   padding:10px;
+  padding-top:2px;
+  padding-right:4px;
   background-color: WhiteSmoke;
   position: fixed;
+  z-index: 10;
   top: 10px;
   right: 20px;
 }

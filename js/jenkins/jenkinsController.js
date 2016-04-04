@@ -48,7 +48,7 @@ var jenkinsCtr = (function() {
   }
 
   function getStoragedJobNameList() {
-    return [""];
+    return ["hoge","huga"];
   }
 
   function getStoragedApiKey() {
