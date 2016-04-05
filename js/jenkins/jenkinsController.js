@@ -3,17 +3,28 @@
 //画面表示とかイベント設定とかそこらへんをやるモジュール
 var jenkinsCtr = (function() {
   var pollingIntervalSecond = 10;
-  function init(){
+
+  function init() {
     writeTableHtml();
     //定期的にテーブルを更新する処理開始
-    setInterval(function(){
-        writeTableHtml();
-    },pollingIntervalSecond * 1000);
+    setInterval(function() {
+      writeTableHtml();
+    }, pollingIntervalSecond * 1000);
     //最小化、最大化ボタン押下時の挙動
     $(".minimize").on('click', function() {
+      if ($(window).width() <= 500) return;
       $(".jenkins-toggle").toggle(200);
       $(".redmine-webview-wrapper")
         .toggleClass("redmine-webview-wrapper-min", 200);
+    });
+    // 横幅が小さくなったら最小化
+    $(window).resize(function() {
+      if ($(window).width() <= 500) {
+        $('#jenkins-inline').hide(200);
+        $('#jenkins-min').show(200);
+        $(".redmine-webview-wrapper")
+          .addClass("redmine-webview-wrapper-min", 200);
+      }
     });
   }
   //localstorageに保存されてるジョブ名を元に、
@@ -29,13 +40,17 @@ var jenkinsCtr = (function() {
         $.each(jobList.getJobs(), function(i, val) {
           $(".jenkins-job-list ." + val.name).on('click', function() {
             val.executeJob();
-            $(this).fadeOut(500,function(){$(this).fadeIn(500)});
+            $(this).fadeOut(500, function() {
+              $(this).fadeIn(500)
+            });
           });
         });
         //実行中のjobがあれば点滅
-        setInterval(function(){
-          $('.blue_anime , .red_anime').fadeOut(500,function(){$(this).fadeIn(500)});
-        },1000);
+        setInterval(function() {
+          $('.blue_anime , .red_anime').fadeOut(500, function() {
+            $(this).fadeIn(500)
+          });
+        }, 1000);
       })
       .fail(function() {
         $(".jenkins-job-list, .jenkins-job-list-min").remove();
@@ -48,13 +63,14 @@ var jenkinsCtr = (function() {
   }
 
   function getStoragedJobNameList() {
-    return ["hoge","huga"];
+    return ["hoge", "huga"];
   }
 
   function getStoragedApiKey() {
     //apiがなければ空文字を返却する
     return "e94798d69c81d02a45ec09cf138e5723";
   }
+
   function getStoragedUserName() {
     return localStorage.getItem('userId_jenkins');
   }
