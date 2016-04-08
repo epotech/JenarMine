@@ -8,7 +8,7 @@
   var remote = window.require('remote');
   var shell = remote.require('shell');
   var fs = require('fs');
-  var notie = require('notie');
+  //var notie = require('notie');
   var notifier = require('node-notifier');
 
   var FETCH_MODE = Object.freeze({ TIME: 'TIME', DATE: 'DATE' });
@@ -42,7 +42,7 @@
         _this.readStoredSettings();
       }
 
-      notie.alert(1, 'Settings have been saved.', NOTIE_DISPLAY_SEC);
+      //notie.alert(1, 'Settings have been saved.', NOTIE_DISPLAY_SEC);
     });
 
     document.getElementById('close-button').addEventListener('click', function() {
@@ -163,7 +163,7 @@
     if (this._settings.url && this._settings.apiKey) {
       return true;
     } else {
-      notie.alert(3, 'Please enter required fields.', NOTIE_DISPLAY_SEC);
+      //notie.alert(3, 'Please enter required fields.', NOTIE_DISPLAY_SEC);
       return false;
     }
   };
@@ -298,7 +298,7 @@
    */
   RedmineNotifier.prototype.handleResponseTestConnection = function(mode, status) {
     if (status === 200) {
-      notie.alert(1, 'Connection succeeded.', NOTIE_DISPLAY_SEC);
+      //notie.alert(1, 'Connection succeeded.', NOTIE_DISPLAY_SEC);
       return this;
     }
 
@@ -308,7 +308,7 @@
       return this;
     }
 
-    notie.alert(3, 'Connection failed.', NOTIE_DISPLAY_SEC);
+    //notie.alert(3, 'Connection failed.', NOTIE_DISPLAY_SEC);
 
     return this;
   };
