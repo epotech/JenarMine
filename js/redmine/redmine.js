@@ -24,10 +24,11 @@
     this._fetchMode = null;
   }
 
+
   /**
    * Initialize the event listeners.
    * @return {Object} Current object.
-   */
+   *
   RedmineNotifier.prototype.initEventListener = function() {
     var _this = this;
 
@@ -56,20 +57,22 @@
 
     return this;
   };
+   */
 
   /**
    * Display the default settings on the screen.
    * @return {Object} Current object.
-   */
+   *
   RedmineNotifier.prototype.displayDefaultSettings = function() {
     document.getElementById('default-fetch-interval-sec').innerHTML = DEFAULT_FETCH_INTERVAL_SEC;
     return this;
   };
+  */
 
   /**
    * Display the settings on the screen.
    * @return {Object} Current object.
-   */
+   *
   RedmineNotifier.prototype.displaySettings = function() {
     document.getElementById('url').value = http://172.31.93.59/redmine/;
     document.getElementById('api-key').value = 1168f084936321ddb372b226d8fad09af578a02c;
@@ -77,11 +80,12 @@
     document.getElementById('fetch-interval-sec').value = 10;
     return this;
   };
+  */
 
   /**
    * Get the settings from the screen.
    * @return {Object} Settings.
-   */
+   *
   RedmineNotifier.prototype.getPageSettings = function() {
     return {
       url: document.getElementById('url').value,
@@ -90,15 +94,17 @@
       fetchIntervalSec: document.getElementById('fetch-interval-sec').value
     };
   };
+  */
 
   /**
    * Read the settings from the screen.
    * @return {Object} Current object.
-   */
+   *
   RedmineNotifier.prototype.readScreenSettings = function() {
     this._settings = this.getPageSettings();
     return this;
   };
+  */
 
   /**
    * Read the settings from the localStorage.
@@ -115,6 +121,17 @@
     return this;
   };
 
+  var url = "http://172.31.93.59/redmine/";
+  var apiKey = "1168f084936321ddb372b226d8fad09af578a02c";
+  var projectId = "14";
+  var fetchIntervalSec = "5";
+  var userName = "hkiya";
+
+  console.log(url);
+  console.log(apiKey);
+  console.log(projectId);
+  console.log(fetchIntervalSec);
+
   /**
    * Update the stored last execution time.
    * @return {Object} Current object.
@@ -128,7 +145,7 @@
   /**
    * Update the stored settings.
    * @return {Object} Current object.
-   */
+   *
   RedmineNotifier.prototype.updateSettings = function() {
     localStorage.setItem('url', this._settings.url);
     localStorage.setItem('apiKey', this._settings.apiKey);
@@ -136,6 +153,7 @@
     localStorage.setItem('fetchIntervalSec', this._settings.fetchIntervalSec);
     return this;
   };
+  */
 
   /**
    * Validate the settings.
@@ -182,8 +200,12 @@
       }
     };
 
-    xhr.open('GET', this._settings.url + '/issues.json' + this.getRequestParams(mode, this._settings.projectId));
-    xhr.setRequestHeader('X-Redmine-API-Key', this._settings.apiKey);
+    //xhr.open('GET', this._settings.url + '/issues.json' + this.getRequestParams(mode, this._settings.projectId));
+    //xhr.setRequestHeader('X-Redmine-API-Key', this._settings.apiKey);
+    //xhr.send();
+
+    xhr.open('GET', url + '/issues.json' + this.getRequestParams(mode, this._settings.projectId));
+    xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
     xhr.send();
 
     return this;
@@ -256,9 +278,14 @@
       }
     };
 
-    xhr.open('GET', pageSettings.url + '/issues.json' + this.getRequestParams(mode, pageSettings.projectId));
-    xhr.setRequestHeader('X-Redmine-API-Key', pageSettings.apiKey);
+    //xhr.open('GET', pageSettings.url + '/issues.json' + this.getRequestParams(mode, pageSettings.projectId));
+    //xhr.setRequestHeader('X-Redmine-API-Key', pageSettings.apiKey);
+    //xhr.send();
+
+    xhr.open('GET', url + '/issues.json' + this.getRequestParams(mode, this._settings.projectId));
+    xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
     xhr.send();
+
 
     return this;
   };
@@ -371,4 +398,3 @@
     }
   });
 }());
-
