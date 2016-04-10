@@ -48,12 +48,17 @@ var jenkinsCtr = (function() {
   }
 
   function getStoragedJobNameList() {
-    return ["hoge","huga"];
+    var storagedJobNameList = [];
+    for (var i=0 ; i<localStorage.length ; i++){
+        if (localStorage.key(i).startsWith('favorite_jobId')) {
+          storagedJobNameList.push(localStorage.getItem(localStorage.key(i)));
+        }
+    }
+    return storagedJobNameList;
   }
 
   function getStoragedApiKey() {
-    //apiがなければ空文字を返却する
-    return "e94798d69c81d02a45ec09cf138e5723";
+    return localStorage.getItem('API_key_jenkins');
   }
   function getStoragedUserName() {
     return localStorage.getItem('userId_jenkins');
