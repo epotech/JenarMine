@@ -22,12 +22,13 @@ var sonarCtr = (function() {
     function getStoragedSonarUrl() {
         return localStorage.getItem('url_sonar');
     }
-    function getStoragedUserName() {
-        return localStorage.getItem('userId_sonar');
+    function getStoragedSonarProjectName() {
+        return localStorage.getItem('projectname_sonar');
     }
     //公開フィールド、メソッドを返す
     return {
         init: init,
-        getStoragedSonarUrl: getStoragedSonarUrl
+        getStoragedSonarUrl: getStoragedSonarUrl,
+        getStoragedSonarProjectName: getStoragedSonarProjectName
     };
 })();

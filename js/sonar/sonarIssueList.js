@@ -48,8 +48,9 @@ proto.visualize = function() {
 // SonarAPI実行・XML読み込み
 function getResources(){
     var sonarUrl = sonarCtr.getStoragedSonarUrl();
+    var projectName = sonarCtr.getStoragedSonarProjectName();
     $.ajax({
-        url: sonarUrl + 'api/resources?resource=dcs.miraicompass.srm:srm-parent&metrics=blocker_violations,critical_violations,major_violations',
+        url: sonarUrl + 'api/resources?resource=' + projectName + '&metrics=blocker_violations,critical_violations,major_violations',
         type: 'get',
         dataType: "xml",
         success: function(xml) {
