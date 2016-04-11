@@ -2,7 +2,7 @@ $(function () {
     jenkinsCtr.init();
 
     //スプラッシュウィンドウを表示する
-    $('#splashscreen').fadeOut(4000);
+    $('#splashscreen').fadeOut(3500);
 
     //localStorageからユーザID/パスワードを取得して自動的にログインを行う
     var executedFlag = false;
