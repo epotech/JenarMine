@@ -62,8 +62,8 @@ $(function () {
     //利用しないサービスは非表示にする
     useServiceChange();
 
-    //webviewのsrcを変更
-    document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine'));
+    //webviewのsrcを変更（Redmineは自動ログインをするため、ログイン画面のURLを設定）
+    document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
     document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
     document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
 });

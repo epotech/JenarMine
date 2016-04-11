@@ -1,6 +1,9 @@
 $(function () {
     jenkinsCtr.init();
 
+    //スプラッシュウィンドウを表示する
+    $('#splashscreen').fadeOut(4000);
+
     //localStorageからユーザID/パスワードを取得して自動的にログインを行う
     var executedFlag = false;
     document.getElementById('redmine_frame').addEventListener("dom-ready", function () {

@@ -49,9 +49,9 @@ p.tabs a.sonar {
     color: white;
 }
 
-p.tabs a.setting{
-  float: right;
-  text-align: right;
+p.tabs a.setting {
+    float: right;
+    text-align: right;
 }
 
 div.tab {
@@ -79,19 +79,21 @@ div.tab p {
 }
 
 input:focus {
-	background: #d6e6fa;
+    background: #d6e6fa;
 }
 
 textarea:focus {
-	background: #d6e6fa;
+    background: #d6e6fa;
 }
-.redmine-webview-wrapper{
-  width : calc(100% - 200px) ;
-  height:100%;
-  float: left;
+
+.redmine-webview-wrapper {
+    width: calc(100% - 200px);
+    height: 100%;
+    float: left;
 }
-.redmine-webview-wrapper-min{
-  width : calc(100% - 20px) ;
+
+.redmine-webview-wrapper-min {
+    width: calc(100% - 20px);
 }
 
 div.jenkins-group {
@@ -115,32 +117,47 @@ div.sonar-group {
     border-radius: 12px 12px 12px 12px;
 }
 
+.search {
+    float: right;
+    text-align: right;
+    cursor: pointer;
+}
 
-.search{
-  float: right;
-  text-align: right;
-  cursor: pointer;
+.remove-search {
+    cursor: pointer;
 }
-.remove-search{
-  cursor: pointer;
+
+.search-word {
+    width: 20%;
 }
-.search-word{
-  width:20%;
+
+.search-count {
+    margin-left: 3px;
+    margin-top: 11px;
 }
-.search-count{
-  margin-left: 3px;
-  margin-top: 11px;
+
+.search-panel {
+    display: none;
+    border: 1px solid LightGrey;
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 2px;
+    padding-right: 4px;
+    background-color: WhiteSmoke;
+    position: fixed;
+    z-index: 10;
+    top: 10px;
+    right: 20px;
 }
-.search-panel{
-  display: none;
-  border: 1px solid LightGrey;
-  border-radius: 5px;
-  padding:10px;
-  padding-top:2px;
-  padding-right:4px;
-  background-color: WhiteSmoke;
-  position: fixed;
-  z-index: 10;
-  top: 10px;
-  right: 20px;
+
+#splashscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    background: url(../images/logo.png) no-repeat center #ccc;
 }
