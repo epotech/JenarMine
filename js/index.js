@@ -19,9 +19,10 @@ app.on('window-all-closed', function () {
 app.on('ready', function () {
     // メイン画面の表示。ウィンドウの幅、高さを指定できる
     mainWindow = new BrowserWindow({
-        width: 1024,
-        height: 768
+        title: 'JenarMine'
     });
+    
+    mainWindow.maximize();
     mainWindow.loadURL('file://' + __dirname + '/../index.html');
 
     // ウィンドウが閉じられたらアプリも終了
