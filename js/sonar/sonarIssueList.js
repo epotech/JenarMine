@@ -3,6 +3,16 @@ var BROCKER = 'blocker_violations',
 CRITICAL = 'critical_violations',
 MAJOR = 'major_violations';
 
+// requirejs読込み
+var requirejs = require('requirejs');
+
+requirejs.config({
+  paths: {
+    c3: "js/c3.min",
+    d3: "js/d3.min"
+}
+});
+
 // コンストラクタ
 var sonarIssueList = function() {};
 
@@ -15,17 +25,25 @@ proto.getIssueList = function() {
 }
 
 // issueリストからグラフを生成します。
-// proto.visualize = function() {
-//     var chart = c3.generate({
-//         bindto: '#sonar-chart',
-//         data: {
-//             columns: [
-//             ['data1', 30, 200, 100, 400, 150, 250],
-//             ['data2', 50, 20, 10, 40, 15, 25]
-//             ]
-//         }
-//     });
-// }
+proto.visualize = function() {
+    requirejs(["d3", "c3"], function(d3, c3) {
+        c3.generate({
+            bindto: '#sonar-chart',
+            size: {
+                height: 200,
+                width: 350
+            },
+            data: {
+                columns: [
+                ['BROCKER', 0],
+                ['CRITICAL', 8],
+                ['MAJOR', 559]
+                ],
+                type: 'pie'
+            }
+        });
+    });
+}
 
 // SonarAPI実行・XML読み込み
 function getResources(){
@@ -36,7 +54,7 @@ function getResources(){
         dataType: "xml",
         success: function(xml) {
             $(".sonar-issue-list, .sonar-issue-list-min").remove();
-            $(".sonar-body").append("<table class='sonar-issue-list table table-striped'>");
+            $(".sonar-body").append("<table class='sonar-issue-list table table-bordered'>");
             $(".sonar-body").append(createTableHeader);
             $("table.sonar-issue-list").append("<tbody>");
             $(xml).find("msr").each(createTableBody);
@@ -48,12 +66,12 @@ function getResources(){
 
 // HTMLテーブルヘッダ生成
 function createTableHeader() {
-    $('<thead>' +
-        '<tr>' + 
-        '<th>重要度</th>' +
-        '<th>issue数</th>' +
-        '</tr>' +
-        '</thead>').appendTo("table.sonar-issue-list");
+    $("<thead class='sonar-issue-list-header'>" +
+        "<tr>" + 
+        "<th>重要度</th>" +
+        "<th>issue数</th>" +
+        "</tr>" +
+        "</thead>").appendTo("table.sonar-issue-list");
 }
 
 // HTMLテーブルボディ生成

@@ -16,6 +16,7 @@ var sonarCtr = (function() {
     function writeIssueTableHtml() {
         var issueList = new sonarIssueList();
         issueList.getIssueList();
+        issueList.visualize();
     }
 
     function getStoragedSonarUrl() {
