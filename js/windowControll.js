@@ -1,5 +1,6 @@
 $(function () {
     jenkinsCtr.init();
+    sonarCtr.init();
 
     //スプラッシュウィンドウを表示する
     $('#splashscreen').fadeOut(4000);

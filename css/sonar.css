@@ -1,0 +1,12 @@
+#sonar-inline {
+  width: 100%;
+  height: 40%;
+  overflow: scroll;
+}
+#sonar-min {
+  width: 100%;
+  height: 2%;
+}
+.sonar-header {
+  background-color: #E0FFFF;
+}
