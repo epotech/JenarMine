@@ -1,6 +1,6 @@
 #sonar-inline {
   width: 100%;
-  height: 45%;
+  height: 40%;
   overflow: scroll;
 }
 #sonar-min {
@@ -12,4 +12,7 @@
 }
 .sonar-issue-list-header {
   background-color: #E0FFFF;
+}
+#sonar-chart {
+  float: right;
 }
