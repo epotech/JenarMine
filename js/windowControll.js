@@ -5,6 +5,13 @@ $(function () {
     //スプラッシュウィンドウを表示する
     $('#splashscreen').fadeOut(4000);
 
+    //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
+    document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 5px; background:#fafafa;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #f3f2f2;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
+    });
+    
     //localStorageからユーザID/パスワードを取得して自動的にログインを行う
     var executedFlag = false;
     document.getElementById('redmine_frame').addEventListener("dom-ready", function () {
