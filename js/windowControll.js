@@ -8,7 +8,7 @@ $(function () {
     //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
     document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 5px; background:#fafafa;}");
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #f3f2f2;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2;}");
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
     });
     
