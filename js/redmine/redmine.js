@@ -385,6 +385,7 @@
     return this;
   };
 
+  /*
   window.addEventListener('load', function() {
     var redmineNotifier = new RedmineNotifier();
     redmineNotifier.initEventListener()
@@ -396,5 +397,5 @@
     if (redmineNotifier.validateSettings()) {
       redmineNotifier.initFetch();
     }
-  });
+  });*/
 }());
