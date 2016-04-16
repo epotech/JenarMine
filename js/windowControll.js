@@ -1,45 +1,5 @@
-$(function () {
-    jenkinsCtr.init();
-    sonarCtr.init();
-
-    //スプラッシュウィンドウを表示する
-    $('#splashscreen').fadeOut(4000);
-
-    //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
-    document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 5px; background:#fafafa;}");
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2;}");
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
-    });
-    
-    //localStorageからユーザID/パスワードを取得して自動的にログインを行う
-    var executedFlag = false;
-    document.getElementById('redmine_frame').addEventListener("dom-ready", function () {
-        //ログイン処理を行うのは初回アクセス時のみとする
-        if (executedFlag == false) {
-            document.getElementById('redmine_frame').executeJavaScript("document.getElementById('username').value = '" + localStorage.getItem('userId_redmine') + "'");
-            document.getElementById('redmine_frame').executeJavaScript("document.getElementById('password').value = '" + localStorage.getItem('password_redmine') + "'");
-            document.getElementById('redmine_frame').executeJavaScript("document.getElementsByName('login')[0].click()");
-            executedFlag = true;
-        }
-    });
-
-    //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
-    document.onkeydown = function (e) {
-        if (document.getElementById(currentTabName + '_frame')) {
-            if (e.ctrlKey) {
-                if (e.keyCode == 116) {
-                    document.getElementById(currentTabName + '_frame').reload();
-                } else if (e.keyCode == 8) {
-                    document.getElementById(currentTabName + '_frame').goBack();
-                }
-            }
-        }
-    };
-})
-
 //タブを変更する際の挙動を定義
-function ChangeTab(tabname) {
+function changeTab(tabname) {
     $(function () {
         $('#redmine').css('display', 'none');
         $('#redmine_lnk').css('opacity', '0.6');
@@ -54,3 +14,50 @@ function ChangeTab(tabname) {
         currentTabName = tabname;
     });
 }
+
+$(function () {
+    jenkinsCtr.init();
+    sonarCtr.init();
+
+    //スプラッシュウィンドウを表示する
+    $('#splashscreen').fadeOut(4000);
+
+    //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
+    document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 5px; background:#fafafa;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
+    });
+    
+    //RedemineのURLが設定されていない場合は設定画面へ自動遷移させる
+    if (!localStorage.getItem('url_redmine')) {
+        changeTab('setting');
+        $('#welcomeDialog').modal('show');
+    } else {
+        changeTab('redmine');        
+        //localStorageからユーザID/パスワードを取得して自動的にログインを行う
+        var executedFlag = false;
+        document.getElementById('redmine_frame').addEventListener("dom-ready", function () {
+            //ログイン処理を行うのは初回アクセス時のみとする
+            if (executedFlag == false) {
+                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('username').value = '" + localStorage.getItem('userId_redmine') + "'");
+                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('password').value = '" + localStorage.getItem('password_redmine') + "'");
+                document.getElementById('redmine_frame').executeJavaScript("document.getElementsByName('login')[0].click()");
+                executedFlag = true;
+            }
+        });
+    }
+
+    //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
+    document.onkeydown = function (e) {
+        if (document.getElementById(currentTabName + '_frame')) {
+            if (e.ctrlKey) {
+                if (e.keyCode == 116) {
+                    document.getElementById(currentTabName + '_frame').reload();
+                } else if (e.keyCode == 8) {
+                    document.getElementById(currentTabName + '_frame').goBack();
+                }
+            }
+        }
+    };
+})
