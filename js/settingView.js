@@ -16,7 +16,7 @@ function setLocalStorage(key, value) {
 
 //ジョブを追加するフォームをappendするメソッド
 function appendFavoriteJob(id, value) {
-    $('#favorite_job_group').append('<div id="' + id + '" class="favorite_job"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label><div class="col-md-4"><input id="' + id + '" value="' + value + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="ジョブID" /></div><button type="button" class="btn btn-danger" onclick=removeFavoriteJob("' + id + '")>Remove</button></div></div>');
+    $('#favorite_job_group').append('<div id="' + id + '_group"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">お気に入りジョブID(Jenkins)</label><div class="col-md-4"><input id="' + id + '" value="' + value + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="ジョブID" /></div><button type="button" class="btn btn-danger" onclick=removeSettingElement("' + id + '")>Remove</button></div></div>');
 }
 
 //Jenkinsのジョブ追加ボタンが押下された際に、ジョブを追加するフォームをappendするメソッド
@@ -25,11 +25,21 @@ function addFavoriteJob() {
     appendFavoriteJob('favorite_jobId' + localStorage.getItem('favorite_job_count'), '');
 }
 
-//Jenkinsのジョブ削除ボタンが押下された際に、ジョブを削除するメソッド
-function removeFavoriteJob(id) {
-    alert(id);
+//TOPページに表示するプロジェクト設定をappendするメソッド
+function appendWatchProject(id, value) {
+    $('#watch_project_group').append('<div id="' + id + '_group"><div class="form-group"><label for="' + id + '" class="col-md-2 control-label">TOPページ表示プロジェクト(Sonar)</label><div class="col-md-4"><input id="' + id + '" value="' + value + '" class="form-control" onBlur="setLocalStorage(this.id, this.value)" type="text" placeholder="[packagename]:[projectname]" /></div><button type="button" class="btn btn-danger" onclick=removeSettingElement("' + id + '")>Remove</button></div></div>');
+}
+
+//Jenkinsのジョブ追加ボタンが押下された際に、ジョブを追加するフォームをappendするメソッド
+function addWatchProject() {
+    localStorage.setItem('watch_project_count', parseInt(localStorage.getItem('watch_project_count') == undefined ? 0 : localStorage.getItem('watch_project_count')) + 1);
+    appendWatchProject('watch_projectId' + localStorage.getItem('watch_project_count'), '');
+}
+
+//指定されたIDの要素とlocalStorageに格納されている要素を削除するメソッド（本メソッドは設定画面の追加要素に対してのみ有効）
+function removeSettingElement(id) {
     localStorage.removeItem(id);
-    var job = document.getElementById(id);
+    var job = document.getElementById(id + '_group');
     job.parentNode.removeChild(job);
 }
 
@@ -60,10 +70,12 @@ $(function () {
         }
     });
     
-    //登録されているfavorite job分だけ設定画面のJenkinsジョブにDOMを追加する
+    //登録されている要素分だけ設定画面の各種設定要素にDOMを追加する
     for (var i=0 ; i<localStorage.length ; i++){
         if (localStorage.key(i).startsWith('favorite_jobId')) {
             appendFavoriteJob(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
+        } else if (localStorage.key(i).startsWith('watch_projectId')) {
+            appendWatchProject(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
         }
     }
     

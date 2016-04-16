@@ -169,8 +169,7 @@
                     <div class="col-md-2"></div>
                     <button type="button" class="btn btn-primary" style="margin-bottom: 10px; margin-left: 15px;" onclick="addFavoriteJob()">Add favorite job</button>
                 </div>
-                <div id="favorite_job_group">
-                </div>
+                <div id="favorite_job_group"></div>
           </div>
           <div class="sonar-group">
             <div class="form-group">
@@ -179,12 +178,11 @@
                     <input id="url_sonar" class="form-control settingProp" type="text" placeholder="SonarのURL" />
                 </div>
             </div>
-            <div class="form-group">
-                <label for="projectname_sonar" class="col-md-2 control-label">プロジェクト名</label>
-                <div class="col-md-6">
-                    <input id="projectname_sonar" class="form-control settingProp" type="text" placeholder="[packagename]:[projectname]" />
-                </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <button type="button" class="btn btn-primary" style="margin-bottom: 10px; margin-left: 15px;" onclick="addWatchProject()">Add watch project</button>
             </div>
+            <div id="watch_project_group"></div>
         </div>
     </form>
 </div>
