@@ -5,11 +5,17 @@ var sonarCtr = (function() {
     function init() {
         setProjectNameFromSetting();
         writeIssueTableHtml();
-        //最小化、最大化ボタン押下時の挙動
-        // $(".minimize").on('click', function() {
-        //     $(".sonar-toggle").toggle(200);
-        //     $(".redmine-webview-wrapper").toggleClass("redmine-webview-wrapper-min", 200);
-        // });
+        // 最小化ボタン押下時の挙動
+        $(".minimizeSonar").on('click', function() {
+           $(".sonar-toggle").toggle(200);
+           $("#redmine_frame").css('height', '92%');
+       });
+        // 最大化ボタン押下時
+        $(".maximizeSonar").on('click', function() {
+            $(".sonar-toggle").toggle(200);
+            $("#redmine_frame").css('height', '60%');
+        });
+
     }
 
     // ローカルストレージに保存されたプロジェクト名を取得して、フォームに設定する。

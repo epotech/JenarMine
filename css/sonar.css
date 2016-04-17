@@ -5,9 +5,37 @@
 }
 #sonar-min {
   width: 100%;
-  height: 2%;
+  height: 8%;
 }
-.sonar-header {
+.minimize-sonar-panel{
+  transition: all 0.2s;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.0));
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.minimize-sonar-panel:hover {
+ opacity: 0.8;
+}
+.maximize-sonar-panel{
+  transition: all 0.2s;
+  opacity: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 6%;
+  cursor: pointer;
+}
+.maximize-sonar-panel:hover {
+ opacity: 0.8;
+}
+.sonar-header, .sonar-header-min {
   background-color: #E0FFFF;
 }
 .sonar-issue-list-header {
