@@ -12,6 +12,10 @@ function useServiceChange() {
 //ローカルストレージに値を保存するためのメソッド
 function setLocalStorage(key, value) {
     localStorage.setItem(key, value);
+    
+    //変更があったことをトリガにeventを発火
+    var customEvent = new Event('onChangeSetting');
+    document.getElementById('setting').dispatchEvent(customEvent);
 }
 
 //ジョブを追加するフォームをappendするメソッド
@@ -86,4 +90,6 @@ $(function () {
     document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
     document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
     document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
+    
+    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { alert('aaa'); });
 });
