@@ -90,6 +90,4 @@ $(function () {
     document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
     document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
     document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
-    
-    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { alert('aaa'); });
 });
