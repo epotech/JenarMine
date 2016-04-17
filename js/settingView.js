@@ -47,6 +47,13 @@ function removeSettingElement(id) {
     job.parentNode.removeChild(job);
 }
 
+//webviewのsrcを変更するメソッド
+function setWebViewSrc() {
+    document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
+    document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
+    document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
+}
+
 $(function () {
     //Redmineは必ず利用する
     localStorage.setItem('useService_redmine', 'true');
@@ -86,8 +93,9 @@ $(function () {
     //利用しないサービスは非表示にする
     useServiceChange();
 
-    //webviewのsrcを変更（Redmineは自動ログインをするため、ログイン画面のURLを設定）
-    document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
-    document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
-    document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
+    //webviewのsrcを変更
+    setWebViewSrc();
+    
+    //変更がある度にwebViewのURLを更新するようにセット
+    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { setWebViewSrc(); });
 });
