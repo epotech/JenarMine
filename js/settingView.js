@@ -97,5 +97,5 @@ $(function () {
     setWebViewSrc();
     
     //変更がある度にwebViewのURLを更新するようにセット
-    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { setWebViewSrc(); });
+//    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { setWebViewSrc(); });
 });
