@@ -25,83 +25,93 @@ var sonarIssueList = function() {};
 var proto = sonarIssueList.prototype;
 
 // issue数のリストを取得します。
-proto.getIssueList = function() {
-    getResources();
-}
-
-// issueリストからグラフを生成します。
-proto.visualize = function() {
-    requirejs(["d3", "c3"], function(d3, c3) {
-        c3.generate({
-            bindto: '#sonar-chart',
-            size: {
-                height: 210,
-                width: 500
-            },
-            data: {
-                columns: [
-                ['BROCKER', brockerCnt],
-                ['CRITICAL', criticalCnt],
-                ['MAJOR', majorCnt]
-                ],
-                type: 'pie',
-                colors: {
-                    BROCKER: '#b92c28',
-                    CRITICAL: '#e38d13',
-                    MAJOR: '#28a4c9'
-                }
-            }
-        });
-    });
+proto.getIssueList = function(i, projectName) {
+    getResources(i, projectName);
 }
 
 // SonarAPI実行・XML読み込み
-function getResources(){
+function getResources(i, projectName){
     var sonarUrl = sonarCtr.getStoragedSonarUrl();
-    var projectName = sonarCtr.getStoragedSonarProjectName();
     $.ajax({
         url: sonarUrl + 'api/resources?resource=' + projectName + '&metrics=blocker_violations,critical_violations,major_violations',
         type: 'get',
         dataType: "xml",
         success: function(xml) {
-            $(".sonar-issue-list, .sonar-issue-list-min").remove();
-            $(".sonar-body").append("<table class='sonar-issue-list table table-striped table-bordered'>");
-            $(".sonar-body").append(createTableHeader);
-            $("table.sonar-issue-list").append("<tbody>");
-            $(xml).find("msr").each(createTableBody);
-            $("table.sonar-issue-list").append("</tbody>");
-            $(".sonar-body").append("</table>");
+            $(xml).find("msr").each(countIssue);
+            visualize(i, projectName, brockerCnt, criticalCnt, majorCnt);
         }
     });
 }
 
-// HTMLテーブルヘッダ部を生成します。
-function createTableHeader() {
-    $("<thead class='sonar-issue-list-header'>" +
-        "<tr>" + 
-        "<th>Severity</th>" +
-        "<th>issues</th>" +
-        "</tr>" +
-        "</thead>").appendTo("table.sonar-issue-list");
+// issue数をカウントする。
+function countIssue() {
+    var key = $(this).find("key").text();
+    var frmt_val = $(this).find("frmt_val").text();
+    var category = getCategory(key);
+    setCount(key, frmt_val);
 }
 
-// HTMLテーブルボディ部を生成します。
-function createTableBody(){
-    var $key = $(this).find("key").text();
-    var $frmt_val = $(this).find("frmt_val").text();
-    var category = getCategory($key);
-    var style = getStyle($key);
-    setCount($key, $frmt_val);
+ // 取得したissue数をグラフ化します。
+ function visualize(i, projectName, brockerCnt, criticalCnt, majorCnt) {
+    appendTitle(i, projectName);
+    appendChart(i, brockerCnt, criticalCnt, majorCnt);
+}
 
-    $('<tr class="' + style + '">' +
-        '<td class="severity-' + category + '">' + category + '</td>' +
-        '<td>' + $frmt_val + '</td>' +
-        '</tr>').appendTo("table.sonar-issue-list tbody");
+// タイトル行生成
+function appendTitle(i, projectName) {
+    i++;
+    $('<div id="sonar-project' + i + '" ' + 'class="col-sm-6">' +
+        '<h4>project ' + i + ': ' + projectName + '</h4>' +
+        '</div>').appendTo(".sonar-body");
+}
+
+// グラフエリア生成
+function appendChart(i, brockerCnt, criticalCnt, majorCnt) {
+    i++;
+    var selector = '#sonar-project' + i;
+    $('<div id="sonar-chart' + i + '" class="col-sm-12"></div>').appendTo(selector);
+    drawing(i, brockerCnt, criticalCnt, majorCnt);
+}
+
+// グラフ描画
+function drawing(i, brockerCnt, criticalCnt, majorCnt) {
+    var bind = '#sonar-chart' + i;
+    requirejs(["d3", "c3"], function(d3, c3) {
+     c3.generate({
+         bindto: bind,
+         size: {
+            height: 210,
+            width: 350
+        },
+        data: {
+         columns: [
+         ['BROCKER', brockerCnt],
+         ['CRITICAL', criticalCnt],
+         ['MAJOR', majorCnt]
+         ],
+         type: 'bar',
+         labels: true,
+         colors: {
+             BROCKER: '#b92c28',
+             CRITICAL: '#e38d13',
+             MAJOR: '#28a4c9'
+         }
+     },
+     axis: {
+        x: {
+            show: false
+        },
+        y: {
+            label: 'issues'
+        }
+    }
+});
+ });
 }
 
 // キー値からカテゴリを取得します。
-function getCategory($key) {
-    switch ($key) {
+function getCategory(key) {
+    switch (this) {
         case BROCKER:
         return 'BROCKER';
         case CRITICAL:
@@ -113,21 +123,7 @@ function getCategory($key) {
     }
 }
 
-// キー値からカテゴリを取得します。
-function getStyle($key) {
-    switch ($key) {
-        case BROCKER:
-        return 'danger';
-        case CRITICAL:
-        return 'warning';
-        case MAJOR:
-        return 'info';
-        default:
-        return '';
-    }
-}
-
-// キー値からカテゴリを取得します。
+// カテゴリ毎にissue数を設定します。
 function setCount($key, $frmt_val) {
     switch ($key) {
         case BROCKER:
