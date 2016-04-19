@@ -21,14 +21,14 @@ var jenkinsJob = (function() {
     return String() + '<tr>'
                       + '<td class="job-name">'+this.dispName+'</td>'
                       + '<td class="job-panel"><table>'
-                        + '<tr><td class="'+this.status+'"></td></tr>'
-                        + '<tr><td class="clock '+this.name+'"></td></tr>'
+                        + '<tr><td class="jenkins-icon jenkins_'+this.status+'"></td></tr>'
+                        + '<tr><td class="jenkins-icon jenkins_clock '+this.name+'"></td></tr>'
                       + '</table></td>'
                     + '</tr>';
   };
   proto.getMinRowHtml = function() {
     return String() + '<tr>'
-                      + '<td class="job-panel-min '+this.status+'"></td>'
+                      + '<td class="job-panel-min jenkins-icon jenkins_'+this.status+'"></td>'
                     + '</tr>';
   };
   // ジョブの実行
@@ -45,7 +45,7 @@ var jenkinsJob = (function() {
         console.info("success");
       })
       .fail(function(data) {
-        console.error(data);
+        if (data.status === 400) alert("パラメータ付きジョブは実行できません");
       });
   };
   // ジョブステータスのセッター(いまのところつかっていない)

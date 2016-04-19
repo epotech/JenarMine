@@ -68,39 +68,30 @@
   padding: 0px!important;
   width: 30px;
 }
-.jenkins-job-list .blue, .jenkins-job-list .blue_anime {
+
+.jenkins-job-list .jenkins-icon {
   width: 30px;
   height: 30px;
-  background: url('../images/jenkins/blue.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
-.jenkins-job-list .red, .jenkins-job-list .red_anime {
-  width: 30px;
-  height: 30px;
-  background: url('../images/jenkins/red.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.jenkins-job-list-min .blue, .jenkins-job-list-min .blue_anime {
+.jenkins-job-list-min .jenkins-icon {
   width: 20px;
   height: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.jenkins_blue, .jenkins_blue_anime {
   background: url('../images/jenkins/blue.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
-.jenkins-job-list-min .red, .jenkins-job-list-min .red_anime {
-  width: 20px;
-  height: 20px;
+.jenkins_yellow, .jenkins_yellow_anime {
+  background: url('../images/jenkins/yellow.png');
+}
+.jenkins_red, .jenkins_red_anime {
   background: url('../images/jenkins/red.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
-.jenkins-job-list .clock {
+.jenkins_clock{
   cursor: pointer;
-  width: 30px;
-  height: 30px;
   background: url('../images/jenkins/clock.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }

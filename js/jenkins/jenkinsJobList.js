@@ -4,6 +4,7 @@
 var jenkinsJobList = (function() {
   var url = jenkinsCtr.getStoragedJenkinsUrl(),
       storageJobNames = jenkinsCtr.getStoragedJobNameList(),
+      userName = jenkinsCtr.getStoragedUserName(),
       apiKey = jenkinsCtr.getStoragedApiKey(),
       jobs = []; //サーバから取得したjobリスト
 
@@ -31,7 +32,7 @@ var jenkinsJobList = (function() {
   // データ完全同期
   proto.updateAll = function() {
     var dfd = $.Deferred();
-    // 配列を初期化　newしたjobはGCに回収される？
+    // 配列を初期化
     jobs = [];
     var jobMap = {};
     // web-apiで問い合わせ
@@ -64,11 +65,15 @@ var jenkinsJobList = (function() {
 
   // privateメソッド定義
   var getAllJobFunc = function() {
+    var authParam = btoa(userName + ":" + apiKey);
     return $.ajax({
       url: url + "/api/json?depth=1&tree=jobs[name,color,displayName]&token="+apiKey,
       contentType: "application/json",
       dataType: 'json',
       type: "GET",
+      beforeSend: function (xhr){
+        xhr.setRequestHeader('Authorization', "Basic " + authParam);
+      }
     })
   }
 
