@@ -26,6 +26,7 @@ var proto = sonarIssueList.prototype;
 
 // issue数のリストを取得します。
 proto.getIssueList = function(i, projectName) {
+    clearCount();
     getResources(i, projectName);
 }
 
@@ -36,6 +37,9 @@ function getResources(i, projectName){
         url: sonarUrl + 'api/resources?resource=' + projectName + '&metrics=blocker_violations,critical_violations,major_violations',
         type: 'get',
         dataType: "xml",
+        error: function() {
+            showErrMsg(projectName);
+        },
         success: function(xml) {
             $(xml).find("msr").each(countIssue);
             visualize(i, projectName, brockerCnt, criticalCnt, majorCnt);
@@ -55,6 +59,13 @@ function countIssue() {
  function visualize(i, projectName, brockerCnt, criticalCnt, majorCnt) {
     appendTitle(i, projectName);
     appendChart(i, brockerCnt, criticalCnt, majorCnt);
+}
+
+// APIエラー時処理
+function showErrMsg(projectName) {
+    $('<div class="no-watch-project col-sm-6">' +
+        'SonarURLまたはプロジェクト名の指定が誤っている可能性があります。<br>' +
+        'プロジェクト名：' + projectName + '</div>').appendTo(".sonar-body");
 }
 
 // タイトル行生成
@@ -80,7 +91,7 @@ function drawing(i, brockerCnt, criticalCnt, majorCnt) {
      c3.generate({
          bindto: bind,
          size: {
-            height: 210,
+            height: 220,
             width: 350
         },
         data: {
@@ -135,4 +146,11 @@ function setCount($key, $frmt_val) {
         default:
         return;
     }
+}
+
+// 変数クリア処理
+function clearCount() {
+    brockerCnt = '';
+    criticalCnt = '';
+    majorCnt = '';
 }
