@@ -49,7 +49,12 @@ function removeSettingElement(id) {
 
 //webviewのsrcを変更するメソッド
 function setWebViewSrc() {
-    document.getElementById('redmine_frame').setAttribute('src', localStorage.getItem('url_redmine') + '/login');
+    //redmineについてはログイン画面に自動遷移するため、設定されたURLの末尾に「/」があれば削除してアクセスする
+    var redmineURL = localStorage.getItem('url_redmine');
+    if (redmineURL.endsWith('/')) {
+        redmineURL = redmineURL.substr( 0, redmineURL.length - 1);
+    }
+    document.getElementById('redmine_frame').setAttribute('src', redmineURL + '/login');
     document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
     document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
 }
