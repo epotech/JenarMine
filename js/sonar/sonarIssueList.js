@@ -41,8 +41,9 @@ function getResources(i, projectName){
             showErrMsg(projectName);
         },
         success: function(xml) {
+          var project = $(xml).find("name").text();
             $(xml).find("msr").each(countIssue);
-            visualize(i, projectName, brockerCnt, criticalCnt, majorCnt);
+            visualize(i, project, brockerCnt, criticalCnt, majorCnt);
         }
     });
 }
@@ -56,8 +57,8 @@ function countIssue() {
 }
 
  // 取得したissue数をグラフ化します。
- function visualize(i, projectName, brockerCnt, criticalCnt, majorCnt) {
-    appendTitle(i, projectName);
+ function visualize(i, project, brockerCnt, criticalCnt, majorCnt) {
+    appendTitle(i, project);
     appendChart(i, brockerCnt, criticalCnt, majorCnt);
 }
 
@@ -69,10 +70,10 @@ function showErrMsg(projectName) {
 }
 
 // タイトル行生成
-function appendTitle(i, projectName) {
+function appendTitle(i, project) {
     i++;
-    $('<div id="sonar-project' + i + '" ' + 'class="col-sm-6">' +
-        '<h4>project ' + i + ': ' + projectName + '</h4>' +
+    $('<div id="sonar-project' + i + '" ' + 'class="col-sm-4">' +
+        '<h4>project ' + i + ': ' + project + '</h4>' +
         '</div>').appendTo(".sonar-body");
 }
 
