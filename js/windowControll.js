@@ -24,8 +24,8 @@ $(function () {
 
     //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
     document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 10px; background:#fafafa;}");
-        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2; border-radius: 50px;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 8px; background:#fafafa;}");
+        document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2; border-radius: 20px;}");
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
     });
     
