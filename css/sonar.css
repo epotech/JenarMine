@@ -4,11 +4,12 @@
   overflow: scroll;
 }
 #sonar-inline::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
   background: #fafafa;
 }
 #sonar-inline::-webkit-scrollbar-thumb {
   background: #d2d2d2;
+  border-radius: 20px;
 }
 #sonar-inline::-webkit-scrollbar-piece {
   background: #eee;
