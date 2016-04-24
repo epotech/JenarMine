@@ -3,13 +3,13 @@
 //自身、子供のjobの状態を取得
 //jobの実行
 var jenkinsJob = (function() {
-  var url = jenkinsCtr.getStoragedJenkinsUrl(),
-      apiKey = jenkinsCtr.getStoragedApiKey(),
-      userName = jenkinsCtr.getStoragedUserName(),
-      name, status, dispName;
+  var url ,apiKey ,userName,name, status, dispName;
 
   // コンストラクタ
-  var jenkinsJob = function(jobName, jobStatus, dispName) {
+  var jenkinsJob = function(url,apiKey,userName,jobName, jobStatus, dispName) {
+    this.url = url;
+    this.apiKey = apiKey;
+    this.userName = userName;
     this.name = jobName;
     this.status = jobStatus;
     this.dispName = dispName;
@@ -33,9 +33,9 @@ var jenkinsJob = (function() {
   };
   // ジョブの実行
   proto.executeJob = function() {
-    var authParam = btoa(userName + ":" + apiKey);
+    var authParam = btoa(this.userName + ":" + this.apiKey);
     $.ajax({
-        url: url + "/job/"+this.name+"/build",
+        url: this.url + "/job/"+this.name+"/build",
         dataType: "text",
         type: "POST",
         beforeSend: function (xhr){

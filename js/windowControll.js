@@ -28,13 +28,13 @@ $(function () {
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2; border-radius: 20px;}");
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
     });
-    
+
     //RedemineのURLが設定されていない場合は設定画面へ自動遷移させる
     if (!localStorage.getItem('url_redmine')) {
         changeTab('setting');
         $('#welcomeDialog').modal('show');
     } else {
-        changeTab('redmine');        
+        changeTab('redmine');
         //localStorageからユーザID/パスワードを取得して自動的にログインを行う
         var executedFlag = false;
         document.getElementById('redmine_frame').addEventListener("dom-ready", function () {
@@ -60,4 +60,11 @@ $(function () {
             }
         }
     };
+
+    //設定画面での設定変更をトリガーとする処理
+    document.getElementById('setting').addEventListener('onChangeSetting', function(event) {
+      console.log(event);
+      jenkinsCtr.stopJenkinsService();
+      jenkinsCtr.init();
+    });
 })

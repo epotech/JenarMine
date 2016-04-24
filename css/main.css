@@ -147,7 +147,7 @@ div.sonar-group {
     position: fixed;
     z-index: 10;
     top: 26px;
-    right: 10px;
+    right: 0px;
 }
 
 #splashscreen {
