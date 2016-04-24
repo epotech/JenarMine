@@ -48,15 +48,17 @@ function removeSettingElement(id) {
 }
 
 //webviewのsrcを変更するメソッド
-function setWebViewSrc() {
-    //redmineについてはログイン画面に自動遷移するため、設定されたURLの末尾に「/」があれば削除してアクセスする
-    var redmineURL = localStorage.getItem('url_redmine');
-    if (redmineURL.endsWith('/')) {
-        redmineURL = redmineURL.substr( 0, redmineURL.length - 1);
+function setWebViewSrc(target) {
+    if (target == "redmine") {
+        //redmineについてはログイン画面に自動遷移するため、設定されたURLの末尾に「/」があれば削除してアクセスする
+        var redmineURL = localStorage.getItem('url_redmine');
+        if (redmineURL.endsWith('/')) {
+            redmineURL = redmineURL.substr( 0, redmineURL.length - 1);
+        }
+        document.getElementById('redmine_frame').setAttribute('src', redmineURL + '/login');
+    } else {
+        document.getElementById(target + '_frame').setAttribute('src', localStorage.getItem('url_' + target));
     }
-    document.getElementById('redmine_frame').setAttribute('src', redmineURL + '/login');
-    document.getElementById('jenkins_frame').setAttribute('src', localStorage.getItem('url_jenkins'));
-    document.getElementById('sonar_frame').setAttribute('src', localStorage.getItem('url_sonar'));
 }
 
 $(function () {
@@ -99,8 +101,7 @@ $(function () {
     useServiceChange();
 
     //webviewのsrcを変更
-    setWebViewSrc();
-    
-    //変更がある度にwebViewのURLを更新するようにセット
-//    document.getElementById('setting').addEventListener('onChangeSetting', function(event) { setWebViewSrc(); });
+    setWebViewSrc('redmine');
+    setWebViewSrc('jenkins');
+    setWebViewSrc('sonar');
 });
