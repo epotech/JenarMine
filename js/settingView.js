@@ -88,6 +88,9 @@ $(function () {
         }
     });
     
+    //ツールチップの挙動をjqueryで上書き
+    $('.glyphicon-repeat').tooltip();
+    
     //登録されている要素分だけ設定画面の各種設定要素にDOMを追加する
     for (var i=0 ; i<localStorage.length ; i++){
         if (localStorage.key(i).startsWith('favorite_jobId')) {
