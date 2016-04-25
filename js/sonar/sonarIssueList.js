@@ -76,7 +76,7 @@ function showErrMsg(projectName) {
 function appendTitle(i, project) {
   i++;
   $('<div id="sonar-project' + i + '" ' + 'class="col-sm-4">' +
-    '<h4>project ' + i + ': ' + project + '</h4>' +
+    '<h4>project: ' + project + '</h4>' +
     '</div>').appendTo(".sonar-body");
 }
 
