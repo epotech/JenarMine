@@ -78,7 +78,7 @@ $(function () {
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
             $(this).on('switchChange.bootstrapSwitch', function (event, state) {
-                localStorage.setItem($(this).prop('id'), state);
+                setLocalStorage($(this).prop('id'), state);
                 useServiceChange();
             });
         } else {
