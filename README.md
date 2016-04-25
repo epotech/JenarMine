@@ -25,8 +25,8 @@ Window 7以降もしくはMac OS X以降
 以下それぞれの詳細を説明
 ### Usage For Sonar
 
-* Sonar解析対象プロジェクト名を設定画面の「Add watch project」ボタンより追加します。  
-　（プロジェクト名の入力方法は、「Add watch project」ボタン横のヘルプアイコンをクリックしてご確認ください。）  
+* Sonar解析対象プロジェクトを設定画面の「Add watch project」ボタンより追加します。  
+（プロジェクト追加方法は、「Add watch project」ボタン横の「？」アイコンをクリックしてください。）  
 * 追加したプロジェクトのissue数がカテゴリ毎にグラフ化されます。  
 表示対象のカテゴリは、「BROCKER」、「CRITICAL」、「MAJOR」です。  
 * プロジェクトは設定画面より複数追加可能です。  
