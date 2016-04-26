@@ -63,8 +63,10 @@ $(function () {
 
     //設定画面での設定変更をトリガーとする処理
     document.getElementById('setting').addEventListener('onChangeSetting', function(event) {
-      console.log(event);
-      jenkinsCtr.stopJenkinsService();
-      jenkinsCtr.init();
+      // サービスのON/OFFが変更された場合は、パネルを初期化する必要があるので再起動
+      if(event.param.key === "useService_jenkins"){
+        jenkinsCtr.stopJenkinsService();
+        jenkinsCtr.init();
+      }
     });
 })

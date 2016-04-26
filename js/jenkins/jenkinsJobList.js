@@ -51,8 +51,8 @@ var jenkinsJobList = (function() {
           if(jobMap[val]){
             self.jobs.push(new jenkinsJob(
               self.url,
-              self.userName,
               self.apiKey,
+              self.userName,
               jobMap[val].name,
               jobMap[val].color,
               jobMap[val].displayName));
@@ -75,7 +75,7 @@ var jenkinsJobList = (function() {
   var getAllJobFunc = function(self) {
     var authParam = btoa(self.userName + ":" + self.apiKey);
     return $.ajax({
-      url: self.url + "/api/json?depth=1&tree=jobs[name,color,displayName]&token="+self.apiKey,
+      url: self.url + "/api/json?depth=1&tree=jobs[name,color,displayName]",
       contentType: "application/json",
       dataType: 'json',
       type: "GET",

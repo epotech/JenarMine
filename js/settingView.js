@@ -12,9 +12,10 @@ function useServiceChange() {
 //ローカルストレージに値を保存するためのメソッド
 function setLocalStorage(key, value) {
     localStorage.setItem(key, value);
-    
+
     //変更があったことをトリガにeventを発火
     var customEvent = new Event('onChangeSetting');
+    customEvent.param = {"key":key,"value":value};
     document.getElementById('setting').dispatchEvent(customEvent);
 }
 
@@ -64,7 +65,7 @@ function setWebViewSrc(target) {
 $(function () {
     //Redmineは必ず利用する
     localStorage.setItem('useService_redmine', 'true');
-    
+
     // 初期表示にlocalstorageから利用するサービス情報をロード
     $('.settingProp').each(function () {
         if ($(this).attr('type') == 'checkbox') {
@@ -87,10 +88,10 @@ $(function () {
             });
         }
     });
-    
+
     //ツールチップの挙動をjqueryで上書き
     $('.glyphicon-repeat').tooltip();
-    
+
     //登録されている要素分だけ設定画面の各種設定要素にDOMを追加する
     for (var i=0 ; i<localStorage.length ; i++){
         if (localStorage.key(i).startsWith('favorite_jobId')) {
@@ -99,7 +100,7 @@ $(function () {
             appendWatchProject(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
         }
     }
-    
+
     //利用しないサービスは非表示にする
     useServiceChange();
 
