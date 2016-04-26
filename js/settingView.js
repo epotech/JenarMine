@@ -53,8 +53,10 @@ function setWebViewSrc(target) {
     if (target == "redmine") {
         //redmineについてはログイン画面に自動遷移するため、設定されたURLの末尾に「/」があれば削除してアクセスする
         var redmineURL = localStorage.getItem('url_redmine');
-        if (redmineURL.endsWith('/')) {
-            redmineURL = redmineURL.substr( 0, redmineURL.length - 1);
+        if(redmineURL){
+          if (redmineURL.endsWith('/')) {
+              redmineURL = redmineURL.substr( 0, redmineURL.length - 1);
+          }
         }
         document.getElementById('redmine_frame').setAttribute('src', redmineURL + '/login');
     } else {
