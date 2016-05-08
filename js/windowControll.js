@@ -23,7 +23,7 @@ $(function () {
     $('#splashscreen').fadeOut(4000);
 
     //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
-    document.getElementById('redmine_frame').addEventListener("did-finish-load", function (){
+    document.getElementById('redmine_frame').addEventListener("did-finish-load", function () {
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar { width: 8px; background:#fafafa;}");
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-thumb { background: #d2d2d2; border-radius: 20px;}");
         document.getElementById('redmine_frame').insertCSS("html::-webkit-scrollbar-piece { background: #eee;}");
@@ -48,6 +48,11 @@ $(function () {
         });
     }
 
+    //Jenkinsについては拡張子がtxtのリンクであればダウンロードを強制する
+    document.getElementById('jenkins_frame').addEventListener("dom-ready", function () {
+        document.getElementById('jenkins_frame').executeJavaScript("var aTag = document.getElementsByTagName('a'); for (var i=0; i< aTag.length; i++) { if(aTag[i].href.endsWith('.txt')){ aTag[i].setAttribute('download', aTag[i].innerText);}}");
+    });
+
     //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
     document.onkeydown = function (e) {
         if (document.getElementById(currentTabName + '_frame')) {
@@ -62,11 +67,11 @@ $(function () {
     };
 
     //設定画面での設定変更をトリガーとする処理
-    document.getElementById('setting').addEventListener('onChangeSetting', function(event) {
-      // サービスのON/OFFが変更された場合は、パネルを初期化する必要があるので再起動
-      if(event.param.key === "useService_jenkins"){
-        jenkinsCtr.stopJenkinsService();
-        jenkinsCtr.init();
-      }
+    document.getElementById('setting').addEventListener('onChangeSetting', function (event) {
+        // サービスのON/OFFが変更された場合は、パネルを初期化する必要があるので再起動
+        if (event.param.key === "useService_jenkins") {
+            jenkinsCtr.stopJenkinsService();
+            jenkinsCtr.init();
+        }
     });
 })
