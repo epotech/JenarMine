@@ -1,3 +1,16 @@
+//現在有効化しているWebViewのタブ名
+var currentTabName;
+
+//タブのリロード
+function reloadTab(tabName) {
+    document.getElementById(tabName + '_frame').reload();
+}
+
+//タブのhistoryBack
+function goBackTab(tabName) {
+    document.getElementById(tabName + '_frame').goBack();
+}
+
 //タブを変更する際の挙動を定義
 function changeTab(tabname) {
     $(function () {
@@ -11,6 +24,10 @@ function changeTab(tabname) {
         $('#' + tabname).css('display', 'block');
         $('#' + tabname + '_lnk').css('opacity', '1.0');
         searchView.setWebview($('#' + tabname).find("webview")[0]);
+        
+        //webViewのdom-readyが終わったタイミングでリロードを行う。（まれに画面が真っ白になる事象への対応）
+        setTimeout(function() {reloadTab(tabname)}, 0);
+        
         currentTabName = tabname;
     });
 }
@@ -58,9 +75,9 @@ $(function () {
         if (document.getElementById(currentTabName + '_frame')) {
             if (e.ctrlKey) {
                 if (e.keyCode == 116) {
-                    document.getElementById(currentTabName + '_frame').reload();
+                    reloadTab(currentTabName);
                 } else if (e.keyCode == 8) {
-                    document.getElementById(currentTabName + '_frame').goBack();
+                    goBackTab(currentTabName);
                 }
             }
         }
