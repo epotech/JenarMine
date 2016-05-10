@@ -24,10 +24,6 @@ function changeTab(tabname) {
         $('#' + tabname).css('display', 'block');
         $('#' + tabname + '_lnk').css('opacity', '1.0');
         searchView.setWebview($('#' + tabname).find("webview")[0]);
-        
-        //webViewのdom-readyが終わったタイミングでリロードを行う。（まれに画面が真っ白になる事象への対応）
-        setTimeout(function() {reloadTab(tabname)}, 0);
-        
         currentTabName = tabname;
     });
 }

@@ -16,9 +16,9 @@
 <body style="position: relative;">
     <div id="splashscreen"></div>
     <p class="tabs" style="width: 100%;">
-        <a id="redmine_lnk" href="#redmine" class="redmine redmine-group" onclick="changeTab('redmine'); return false;">Redmine</a>
-        <a id="jenkins_lnk" href="#jenkins" class="jenkins jenkins-group" onclick="changeTab('jenkins'); return false;">Jenkins</a>
-        <a id="sonar_lnk" href="#sonar" class="sonar sonar-group" onclick="changeTab('sonar'); return false;">Sonar</a>
+        <a id="redmine_lnk" href="#redmine" class="redmine redmine-group" onclick="changeTab('redmine'); return false;" ondblclick="reloadTab('redmine'); return false;">Redmine</a>
+        <a id="jenkins_lnk" href="#jenkins" class="jenkins jenkins-group" onclick="changeTab('jenkins'); return false;" ondblclick="reloadTab('jenkins'); return false;">Jenkins</a>
+        <a id="sonar_lnk" href="#sonar" class="sonar sonar-group" onclick="changeTab('sonar'); return false;" ondblclick="reloadTab('sonar'); return false;">Sonar</a>
         <a id="setting_lnk" href="#setting" class="setting" onclick="changeTab('setting'); return false;"><img src="./images/setting.svg" height="20%" width="20%"></a>
     </p>
     <div class="search-panel">
