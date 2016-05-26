@@ -1,2 +1,4 @@
 electron-packager ./JenarMine JenarMine --platform=win32 --arch=x64 --version=0.36.7 --icon=./JenarMine/images/logo.ico
- 
+
+
+tmatsuoka•ª 
