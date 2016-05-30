@@ -95,7 +95,7 @@ var searchView = (function() {
     activeIndex = '';
     $(".search-word").val("");
     $(".search-count").text("0/0");
-    if (targetFrame.getWebContents()) {
+    if (targetFrame.webContents) {
       targetFrame.stopFindInPage('clearSelection');
     }
   }
