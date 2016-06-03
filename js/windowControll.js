@@ -28,6 +28,29 @@ function changeTab(tabname) {
     });
 }
 
+//表示するプロジェクトを変更する
+function changeProject() {
+    $('#bodyDiv').css('transition-duration', '1s');
+    $('#bodyDiv').css('transform', 'rotateY(' + projectID * 360 + 'deg)');
+}
+
+//表示するプロジェクトを変更する（次へ）
+function nextProject() {
+    
+    //TODO: localStrage経由でcurrentProjectIDを取得する
+    
+    projectID = projectID + 1;
+    changeProject();
+}
+
+//表示するプロジェクトを変更する（前へ）
+function prevProject() {
+    if (projectID != 0) {
+        projectID = projectID - 1;
+        changeProject();
+    }
+}
+
 $(function () {
     jenkinsCtr.init();
     sonarCtr.init();
@@ -66,14 +89,21 @@ $(function () {
         document.getElementById('jenkins_frame').executeJavaScript("var aTag = document.getElementsByTagName('a'); for (var i=0; i< aTag.length; i++) { if(aTag[i].href.endsWith('.txt')){ aTag[i].setAttribute('download', aTag[i].innerText);}}");
     });
 
-    //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
     document.onkeydown = function (e) {
         if (document.getElementById(currentTabName + '_frame')) {
             if (e.ctrlKey) {
+                //キーダウンイベントを制御し、webView内の操作をブラウザのように行う
                 if (e.keyCode == 116) {
                     reloadTab(currentTabName);
                 } else if (e.keyCode == 8) {
                     goBackTab(currentTabName);
+                } else if (e.altKey) {
+                    //ctrl + alt + →が押された場合は別プロジェクトに移るようなアニメーションを入れる
+                    if (e.keyCode == 39) {
+                        nextProject();
+                    } else if (e.key == 37) {
+                        prevProject();
+                    }
                 }
             }
         }
