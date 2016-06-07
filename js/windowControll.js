@@ -28,26 +28,50 @@ function changeTab(tabname) {
     });
 }
 
+//プロジェクト名を変更開始時の挙動
+function editProjectName() {
+    $(function () {
+        $('#editProjectName').css('display', 'none');
+        $('#editProjectName').removeClass('glyphicon glyphicon-pencil');
+        $('#projectName').prop('disabled', false);
+    });
+}
+
+//プロジェクト名の変更完了後の挙動
+function editedProjectName() {
+    $(function() {
+        $('#editProjectName').css('display', 'block');
+        $('#editProjectName').addClass('glyphicon glyphicon-pencil');
+        $('#projectName').prop('disabled', true);
+    });
+}
+
+function getCurrentProjectID() {
+    return parseInt(localStorage.getItem('currentProjectID'));
+}
+
 //表示するプロジェクトを変更する
-function changeProject() {
+function changeProject(projectID) {
     $('#bodyDiv').css('transition-duration', '1s');
     $('#bodyDiv').css('transform', 'rotateY(' + projectID * 360 + 'deg)');
+    localStorage.setItem('currentProjectID', projectID);
 }
 
 //表示するプロジェクトを変更する（次へ）
 function nextProject() {
-    
-    //TODO: localStrage経由でcurrentProjectIDを取得する
-    
-    projectID = projectID + 1;
-    changeProject();
+    var projectID = getCurrentProjectID();
+    if (projectID < 4) {
+        projectID = projectID + 1;
+        changeProject(projectID);
+    }
 }
 
 //表示するプロジェクトを変更する（前へ）
 function prevProject() {
+    var projectID = getCurrentProjectID();
     if (projectID != 0) {
         projectID = projectID - 1;
-        changeProject();
+        changeProject(projectID);
     }
 }
 
@@ -101,7 +125,7 @@ $(function () {
                     //ctrl + alt + →が押された場合は別プロジェクトに移るようなアニメーションを入れる
                     if (e.keyCode == 39) {
                         nextProject();
-                    } else if (e.key == 37) {
+                    } else if (e.keyCode == 37) {
                         prevProject();
                     }
                 }
