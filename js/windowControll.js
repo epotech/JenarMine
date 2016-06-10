@@ -1,11 +1,3 @@
-// requirejs読込み
-var requirejs = require('requirejs');
-requirejs.config({
-  paths: {
-    util: 'js/util'
-  }
-});
-
 //現在有効化しているWebViewのタブ名
 var currentTabName;
 
@@ -64,6 +56,21 @@ function setCurrentProjectID(projectID) {
     localStorage.setItem('currentProjectID', projectID);
 }
 
+//localStorageから対象のプロジェクトIDに紐付く設定情報を取得
+function getCurrentProjectSetting() {
+    var projectSetting = localStorage.getItem('projectSetting' + getCurrentProjectID());
+    if (!projectSetting) {
+        return new Object();
+    } else {
+        return JSON.parse(projectSetting);
+    }
+}
+
+//現在アクティブなプロジェクトIDに紐付くプロジェクト設定をlocalStorageに格納する
+function setCurrentProjectSetting(projectSetting) {
+    localStorage.setItem('projectSetting' + getCurrentProjectID(), JSON.stringify(projectSetting));
+}
+
 //表示するプロジェクトを変更する
 function changeProject(projectID) {
     $('#bodyDiv').css('transition-duration', '1s');
@@ -89,26 +96,11 @@ function prevProject() {
     }
 }
 
-//localStorageから対象のプロジェクトIDに紐付く設定情報を取得
-function getCurrentProjectSetting() {
-    var projectSetting = localStorage.getItem('ptojectID' + getCurrentProjectID());
-    if (!projectSetting) {
-        return new Object();
-    } else {
-        return projectSetting;
-    }
-}
-
-//現在アクティブなプロジェクトIDに紐付くプロジェクト設定をlocalStorageに格納する
-function setCurrentProjectSetting(projectSetting) {
-    localStorage.setItem(getCurrentProjectID, projectSetting);
-}
-
 $(function () {
-    requirejs(['util'], function (util) {
-        alert(util.getCurrentProjectID());
-    });
-
+    if (!getCurrentProjectID()) {
+        setCurrentProjectID(0);
+    }
+    
     jenkinsCtr.init();
     sonarCtr.init();
 
@@ -123,7 +115,7 @@ $(function () {
     });
 
     //RedemineのURLが設定されていない場合は設定画面へ自動遷移させる
-    if (!localStorage.getItem('url_redmine')) {
+    if (!getCurrentProjectSetting().url_redmine) {
         changeTab('setting');
         $('#welcomeDialog').modal('show');
     } else {
@@ -133,8 +125,8 @@ $(function () {
         document.getElementById('redmine_frame').addEventListener("dom-ready", function () {
             //ログイン処理を行うのは初回アクセス時のみとする
             if (executedFlag == false) {
-                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('username').value = '" + localStorage.getItem('userId_redmine') + "'");
-                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('password').value = '" + localStorage.getItem('password_redmine') + "'");
+                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('username').value = '" + getCurrentProjectSetting().userId_redmine + "'");
+                document.getElementById('redmine_frame').executeJavaScript("document.getElementById('password').value = '" + getCurrentProjectSetting().password_redmine + "'");
                 document.getElementById('redmine_frame').executeJavaScript("document.getElementsByName('login')[0].click()");
                 executedFlag = true;
             }
