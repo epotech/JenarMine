@@ -1,3 +1,11 @@
+// requirejs読込み
+var requirejs = require('requirejs');
+requirejs.config({
+  paths: {
+    util: 'js/util'
+  }
+});
+
 //現在有効化しているWebViewのタブ名
 var currentTabName;
 
@@ -39,7 +47,7 @@ function editProjectName() {
 
 //プロジェクト名の変更完了後の挙動
 function editedProjectName() {
-    $(function() {
+    $(function () {
         $('#editProjectName').css('display', 'block');
         $('#editProjectName').addClass('glyphicon glyphicon-pencil');
         $('#projectName').prop('disabled', true);
@@ -66,7 +74,7 @@ function changeProject(projectID) {
 //表示するプロジェクトを変更する（次へ）
 function nextProject() {
     var projectID = getCurrentProjectID();
-    if (projectID < 4) {
+    if (projectID < 3) {
         projectID = projectID + 1;
         changeProject(projectID);
     }
@@ -82,8 +90,8 @@ function prevProject() {
 }
 
 //localStorageから対象のプロジェクトIDに紐付く設定情報を取得
-function getProjectSetting(projectID) {
-    var projectSetting = localStorage.getItem('ptojectID' + projectID);
+function getCurrentProjectSetting() {
+    var projectSetting = localStorage.getItem('ptojectID' + getCurrentProjectID());
     if (!projectSetting) {
         return new Object();
     } else {
@@ -91,7 +99,16 @@ function getProjectSetting(projectID) {
     }
 }
 
+//現在アクティブなプロジェクトIDに紐付くプロジェクト設定をlocalStorageに格納する
+function setCurrentProjectSetting(projectSetting) {
+    localStorage.setItem(getCurrentProjectID, projectSetting);
+}
+
 $(function () {
+    requirejs(['util'], function (util) {
+        alert(util.getCurrentProjectID());
+    });
+
     jenkinsCtr.init();
     sonarCtr.init();
 
