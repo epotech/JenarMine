@@ -1,7 +1,17 @@
+// 関数はdefineで定義（複数定義も可能）
+define(function() {
+    return {
+        getCurrentProjectID: function() {
+            return parseInt(localStorage.getItem('currentProjectID'));
+        },
+        test : "test!!"
+    };
+});
+
 //現在アクティブなプロジェクトIDを取得
-function getCurrentProjectID() {
-    return parseInt(localStorage.getItem('currentProjectID'));
-}
+ function getCurrentProjectID() {
+     return parseInt(localStorage.getItem('currentProjectID'));
+ }
 
 //現在アクティブなプロジェクトIDをセット
 function setCurrentProjectID(projectID) {

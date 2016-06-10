@@ -107,6 +107,7 @@ function setCurrentProjectSetting(projectSetting) {
 $(function () {
     requirejs(['util'], function (util) {
         alert(util.getCurrentProjectID());
+        console.log(util.test);
     });
 
     jenkinsCtr.init();
