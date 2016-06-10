@@ -1,9 +1,10 @@
 'use strict';
 
 // アプリケーションをコントロールするモジュール
-var app = require('app');
+var electron = require('electron');
+var app = electron.app;
 // ウィンドウを作成するモジュール
-var BrowserWindow = require('browser-window');
+var BrowserWindow = electron.BrowserWindow;
 
 // メインウィンドウはGCされないようにグローバル宣言
 var mainWindow = null;

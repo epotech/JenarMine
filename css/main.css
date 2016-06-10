@@ -51,7 +51,11 @@ p.tabs a.sonar {
 
 p.tabs a.setting {
     float: right;
-    text-align: right;
+    background:url(../images/setting.svg) no-repeat;
+    width: 15px;
+    height: 15px;
+    margin-top: 5px;
+    margin-right:5px;
 }
 
 div.tab {
@@ -162,4 +166,17 @@ div.sonar-group {
     width: 900px;
     height: 600px;
     background: url(../images/splash.png) no-repeat center #fff;
+}
+
+.project-name {
+    float: right;
+    border-radius: 8px 8px 8px 8px;
+    margin-left: 5px;
+}
+
+.edit {
+    float: right;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 5px;
 }
