@@ -11,7 +11,6 @@ function setCurrentProjectID(projectID) {
 //localStorageから対象のプロジェクトIDに紐付く設定情報を取得
 function getCurrentProjectSetting() {
     var projectSetting = localStorage.getItem('ptojectID' + getCurrentProjectID());
-    alert(projectSetting);
     if (!projectSetting) {
         return new Object();
     } else {
