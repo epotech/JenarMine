@@ -38,21 +38,35 @@ function changeTab(tabname) {
     });
 }
 
+//プロジェクト名を編集する際に各オブジェクトの入力可否を変更する
+function changeStateEditProjectName(canEdit) {
+    $(function () {
+        if (canEdit) {
+            $('#editProjectName').css('display', 'none');
+            $('#editProjectName').removeClass('glyphicon glyphicon-pencil');
+            $('#projectName').prop('disabled', false);
+        } else {
+            $('#editProjectName').css('display', 'block');
+            $('#editProjectName').addClass('glyphicon glyphicon-pencil');
+            $('#projectName').prop('disabled', true);
+        }
+    });
+}
+
 //プロジェクト名を変更開始時の挙動
 function editProjectName() {
-    $(function () {
-        $('#editProjectName').css('display', 'none');
-        $('#editProjectName').removeClass('glyphicon glyphicon-pencil');
-        $('#projectName').prop('disabled', false);
-    });
+    changeStateEditProjectName(true);
 }
 
 //プロジェクト名の変更完了後の挙動
 function editedProjectName() {
     $(function () {
-        $('#editProjectName').css('display', 'block');
-        $('#editProjectName').addClass('glyphicon glyphicon-pencil');
-        $('#projectName').prop('disabled', true);
+        changeStateEditProjectName(false);
+        requirejs(['util'], function (util) {
+            var projectSetting = util.getCurrentProjectSetting();
+            projectSetting.projectName = $('#projectName').val();
+            util.setCurrentProjectSetting(projectSetting);
+        });
     });
 }
 
@@ -100,8 +114,14 @@ function prevProject() {
 
 $(function () {
     requirejs(['util'], function (util) {
+        //初回アクセス時はcurrentProjectIDがないため0を固定でセット
         if (!util.getCurrentProjectID()) {
             util.setCurrentProjectID(0);
+        }
+        //プロジェクト名をlocalStorageから取得してセット
+        if (util.getCurrentProjectSetting().projectName) {
+            changeStateEditProjectName(false);
+            $('#projectName').val(util.getCurrentProjectSetting().projectName);
         }
 
         jenkinsCtr.init();
