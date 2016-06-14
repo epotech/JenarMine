@@ -163,8 +163,8 @@ div.sonar-group {
     bottom: 0;
     margin: auto;
     z-index: 999;
-    width: 900px;
-    height: 600px;
+    width: 500px;
+    height: 400px;
     background: url(../images/splash.png) no-repeat center #fff;
 }
 

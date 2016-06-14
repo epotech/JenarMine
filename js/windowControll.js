@@ -6,6 +6,8 @@ requirejs.config({
     }
 });
 
+var ipc = require("electron").ipcRenderer;
+
 //現在有効化しているWebViewのタブ名
 var currentTabName;
 
@@ -55,13 +57,23 @@ function editedProjectName() {
 }
 
 //表示するプロジェクトを変更する
-function changeProject(projectID) {
-    $('#bodyDiv').css('transition-duration', '1s');
-    $('#bodyDiv').css('transform', 'rotateY(' + projectID * 360 + 'deg)');
+function changeProject(projectID, next) {
+    var angle;
+    if (next) {
+        angle = 360;
+    } else {
+        angle = -360;
+    }
+    
+    $('#bodyDiv').css('transition-duration', '0.5s');
+    $('#bodyDiv').css('transform', 'rotateY(' + angle + 'deg)');
     
     requirejs(['util'], function (util) {
         util.setCurrentProjectID(projectID);
     });
+    setTimeout(function(){
+        ipc.send('change-project', {});
+    },200);
 }
 
 //表示するプロジェクトを変更する（次へ）
@@ -70,7 +82,7 @@ function nextProject() {
         var projectID = util.getCurrentProjectID();
         if (projectID < 3) {
             projectID = projectID + 1;
-            changeProject(projectID);
+            changeProject(projectID, true);
         }
     });
 }
@@ -81,7 +93,7 @@ function prevProject() {
         var projectID = util.getCurrentProjectID();
         if (projectID != 0) {
             projectID = projectID - 1;
-            changeProject(projectID);
+            changeProject(projectID, false);
         }
     });
 }

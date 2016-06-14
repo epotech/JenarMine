@@ -5,6 +5,7 @@ var electron = require('electron');
 var app = electron.app;
 // ウィンドウを作成するモジュール
 var BrowserWindow = electron.BrowserWindow;
+var ipc = electron.ipcMain;
 
 // メインウィンドウはGCされないようにグローバル宣言
 var mainWindow = null;
@@ -29,5 +30,9 @@ app.on('ready', function () {
     // ウィンドウが閉じられたらアプリも終了
     mainWindow.on('closed', function () {
         mainWindow = null;
+    });
+    
+    ipc.on('change-project', function() {
+        mainWindow.loadURL('file://' + __dirname + '/../index.html');
     });
 });
