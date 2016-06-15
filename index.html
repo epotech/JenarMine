@@ -205,6 +205,9 @@
     </div>
     <script>
         window.jQuery = window.$ = require('./js/jquery-1.12.0.min.js');
+        require("babel-core/register")({
+            "presets": ["es2015", "react"]
+        });
     </script>
     <script type="text/script">
         $(function () {
