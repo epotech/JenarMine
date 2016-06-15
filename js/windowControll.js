@@ -85,9 +85,8 @@ function changeProject(projectID, next) {
     requirejs(['util'], function (util) {
         util.setCurrentProjectID(projectID);
     });
-    setTimeout(function(){
-        ipc.send('change-project', {});
-    },200);
+
+    ipc.send('change-project', {});
 }
 
 //表示するプロジェクトを変更する（次へ）
@@ -128,7 +127,7 @@ $(function () {
         sonarCtr.init();
 
         //スプラッシュウィンドウを表示する
-        $('#splashscreen').fadeOut(4000);
+        $('#splashscreen').fadeOut(3500);
 
         //スクロールバーをカスタマイズするためにロードされたタイミングでCSSを変更する
         document.getElementById('redmine_frame').addEventListener("did-finish-load", function () {
