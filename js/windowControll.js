@@ -6,7 +6,7 @@ requirejs.config({
     }
 });
 
-var ipc = require("electron").ipcRenderer;
+var ipc = require('electron').ipcRenderer;
 
 //現在有効化しているWebViewのタブ名
 var currentTabName;
@@ -34,6 +34,7 @@ function changeTab(tabname) {
         $('#' + tabname).css('display', 'block');
         $('#' + tabname + '_lnk').css('opacity', '1.0');
         searchView.setWebview($('#' + tabname).find("webview")[0]);
+        contextMenu.setWebview($('#' + tabname).find("webview")[0]);
         currentTabName = tabname;
     });
 }
@@ -78,7 +79,7 @@ function changeProject(projectID, next) {
     } else {
         angle = -360;
     }
-    
+
     $('#bodyDiv').css('transition-duration', '0.5s');
     $('#bodyDiv').css('transform', 'rotateY(' + angle + 'deg)');
     

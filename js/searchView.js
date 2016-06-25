@@ -5,22 +5,9 @@ var searchView = (function() {
   var activeIndex = '';
   var targetFrame;
 
-
   function setEvent() {
     //検索件数表示
-    targetFrame.addEventListener("found-in-page", function(e) {
-      var result = e.result;
-
-      activeIndex = result.matches ? activeIndex : 0;
-      if (result.activeMatchOrdinal) {
-        // マッチした箇所を覚えておく
-        activeIndex = result.activeMatchOrdinal;
-      }
-      if (result.finalUpdate) {
-        // M個のマッチ中 N 番目がアクティブな時，N/M という文字列をつくる
-        $(".search-count").text(`${activeIndex}/${result.matches}`)
-      }
-    });
+    targetFrame.addEventListener("found-in-page", showMatchedPosition);
 
     $(".search , .remove-search").on("click.searchFunc", function() {
       $(".search-panel").toggle(100);
@@ -55,10 +42,24 @@ var searchView = (function() {
     });
   }
 
+  //removeEventするために関数を別だし
+  var showMatchedPosition = function(e){
+    var result = e.result;
+    activeIndex = result.matches ? activeIndex : 0;
+    if (result.activeMatchOrdinal) {
+      // マッチした箇所を覚えておく
+      activeIndex = result.activeMatchOrdinal;
+    }
+    if (result.finalUpdate) {
+      // M個のマッチ中 N 番目がアクティブな時，N/M という文字列をつくる
+      $(".search-count").text(`${activeIndex}/${result.matches}`)
+    }
+  }
 
   function search(text, isForward) {
     var option = {
       findNext: true,
+      wordStart: true,
       forward: isForward
     };
     try {
@@ -68,10 +69,9 @@ var searchView = (function() {
       } else {
         // 検索開始
         previousText = text;
-        targetFrame.stopFindInPage('clearSelection');
         targetFrame.findInPage(text);
       }
-    } catch (e) {}
+    } catch (e) {console.error(e)}
   }
 
   function setWebview(viewObj) {
@@ -84,7 +84,7 @@ var searchView = (function() {
   }
 
   function unbindAll() {
-    targetFrame.removeEventListener("found-in-page", function() {});
+    targetFrame.removeEventListener("found-in-page", showMatchedPosition);
     $(".search,.remove-search,.search-word,.search-next,.search-prev").off(".searchFunc");
     $(document).off(".searchFunc");
   }
@@ -95,7 +95,7 @@ var searchView = (function() {
     activeIndex = '';
     $(".search-word").val("");
     $(".search-count").text("0/0");
-    if (targetFrame.webContents) {
+    if (targetFrame.getWebContents()) {
       targetFrame.stopFindInPage('clearSelection');
     }
   }
