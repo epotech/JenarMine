@@ -1,6 +1,7 @@
 var contextMenu = (function() {
   var electron = require('electron');
-  var {Menu, MenuItem} = electron.remote;
+  var remote = electron.remote;
+  var {Menu, MenuItem} = remote;
   var menu;
   var targetFrame;
 
